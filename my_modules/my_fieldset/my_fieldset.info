@@ -1,0 +1,4 @@
+name = "My Fieldset"
+description = "My first Drupal 7 fieldset module to build a form with fieldset"
+core = "7.x"
+version = "7.x-1.0"

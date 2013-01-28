@@ -1,0 +1,71 @@
+<?php
+function my_fieldset_install() {
+  drupal_install_schema('my_fieldset');
+}
+function my_fieldset_uninstall() {
+ drupal_uninstall_schema('my_fieldset');
+  } 
+
+function my_fieldset_schema(){
+  $schema = array();
+  $schema['my_fieldset'] = array(
+  'description' => 'My_fieldset module table.',
+  'fields'=>array(  
+  'id'=>array(  
+  'type'=>'serial',  
+  'unsigned'=>TRUE,  
+  'not null'=>TRUE  
+  ),  
+  'firstname'=>array(  
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'null'=>TRUE  
+  ),  
+  'lastname'=>array(  
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'null'=>TRUE  
+  ), 
+
+  'birthday'=>array(
+   //'type' => 'datetime', 
+   //'mysql_type' => 'DATETIME',
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'not null'=>TRUE     
+  ),
+
+  'address'=>array(  
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'null'=>TRUE  
+  ),
+  'city'=>array(  
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'null'=>TRUE  
+  ),
+  'state'=>array(  
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'null'=>TRUE  
+  ),
+  'zip_code'=>array(  
+  'type'=>'varchar',  
+  'length'=>255,  
+  'default' => 'NULL',  
+  'null'=>TRUE  
+  ),
+ 
+  ),  
+   'primary key'=>array("id"), 
+  );
+  return $schema;
+  }
+?>

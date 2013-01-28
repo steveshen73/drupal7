@@ -1,0 +1,12 @@
+$(document).ready(function(){
+         
+	$.getJSON('http://localhost/map/accountant.json', function(data) {
+            var directories = data.responde_data.drectories;
+	    var address = [];
+	    var pop_content = [];
+	    $.each(directories, function(key, obj) {
+		address.push('<li id="addressCity-' + key + '">' + obj["addressCity"] + '</li>');
+		pop_content.push('<li id="name-' + key + '">' + obj["name"] + '</li>');
+	    });
+	});​
+ })

@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Testing IWF</title>
+		
+    <script src='iwfcore.js'></script>
+    <script src='iwfxml.js'></script>
+    <script src='iwfajax.js'></script>
+
+    <script>
+      function useIWF()
+      {
+        iwfRequest('iwf.xml')
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing IWF</h1>
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useIWF()"> 
+      </form>
+      <div id='iwfContent'>The fetched text will appear here.</div>
+  </body>
+</html>

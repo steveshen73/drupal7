@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+span, strong, p { 
+  padding: 8px; display: block; border: 1px solid #999;  }
+    </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+</head>
+<body>
+<!--The target property can be the element that registered for the event or a descendant of it. It is often useful to compare event.target to this in order to determine if the event is being handled due to event bubbling. This property is very useful in event delegation, when events bubble.-->
+  
+<div id="log"></div>
+<div>
+  <p>
+    <strong><span>click</span></strong>
+  </p>
+</div>
+<script>$("strong").click(function(event) {
+  $("#log").html("clicked: " + event.target.nodeName);
+});  </script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>
+      Updating part of a page 
+    </title>
+
+    <script language="JavaScript">
+      function update() 
+      {
+        div1.insertAdjacentHTML("AfterEnd",
+        "<p>Here's a new text field: <input type=text value='Hello!'></p>");
+      }
+        </script>
+    </head>
+
+    <body>
+
+      <center>
+        <h1>
+          Updating part of a page
+        </h1>
+      </center>
+
+      <div id="div1">
+        <center>
+          <input type=button value="Click me" 
+            onclick="update()">
+        </center>
+      </div>
+
+    </body>
+</html>

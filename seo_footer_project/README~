@@ -1,0 +1,17 @@
+seo footer project
+------------------
+author: Honglin(steve) Shen
+date: 11/05/2012
+--------------------
+step 1: create 5 different footer_tabs (1 to 5) under admin/structure/taxonomy, adding term id under Tab term.
+
+step 2: clone site template under admin/structure/panels edit the Site Template. (Clone 5 different site templates)
+        make sure changing the taxonomy under "context" of the cloned 5 different site template (1,2,3,4,5) with 
+        corresponding 5 different footer tabs taxonomy term id on the cloned site template edit pages
+
+step 3: changing the associated footer tabs for each footer node by going to admin/content, edit the content node.(these pages will be the footer)
+
+step 4: changing the associated site template with the pages in which footer will be shown 
+        (go to admin/structure/pages to find the pages and edit the "template" to choose the right site template )
+
+

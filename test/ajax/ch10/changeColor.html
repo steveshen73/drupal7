@@ -1,0 +1,57 @@
+<html> 
+  <head> 
+    <title>Drawing attention to text</title> 
+
+    <script language = "javascript">
+      function getData(dataSource, divID) 
+      { 
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new 
+            ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+          var obj = document.getElementById("targetDiv"); 
+          XMLHttpRequestObject.open("GET", dataSource); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                obj.style.color = "#FF0000";
+                obj.innerHTML = XMLHttpRequestObject.responseText; 
+                setTimeout(changer, 500);
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function changer()
+      {
+          var target = document.getElementById("targetDiv"); 
+          target.style.color = "#000000";
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Drawing attention to text</H1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "getData('message.txt', 'targetDiv')"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

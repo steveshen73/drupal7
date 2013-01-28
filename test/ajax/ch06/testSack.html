@@ -1,0 +1,35 @@
+<html> 
+  <head> 
+    <title>Testing the Sack framework</title> 
+
+    <script src = "tw-sack.js"></script>
+
+    <script language = "javascript">
+
+      function useSack() 
+      { 
+        var sackObject = new sack();
+
+        sackObject.requestFile = "sack.txt";
+        sackObject.method = "GET"; 
+        sackObject.element = "targetDiv";
+        sackObject.runAJAX("");
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Testing the Sack framework</H1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useSack()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

@@ -1,0 +1,38 @@
+<html>
+  <head>
+
+    <title>Testing the uniAjax framework</title>
+
+    <script language="JavaScript" src="uniAjax.js"></script> 
+
+    <script language = "javascript">
+
+      function useUniAjax()
+      {
+        ajax = new uniAjax(); 
+        ajax.request({'url': 'uniAjax.txt', 'func': callback});
+      }
+
+      function callback(response, id) 
+      {
+        document.getElementById("targetDiv").innerHTML 
+          = response; 
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing the uniAjax framework</h1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useUniAjax()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body>
+</html>

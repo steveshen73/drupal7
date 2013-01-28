@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title></title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="robots" content="all" />
+	<base href="http://localhost" />
+    
+   <!-- <link href="style.css" rel="stylesheet" type="text/css" />-->
+	<link rel="icon" type="image/png" href="favicon.png"><!-- Major Browsers -->
+<!--[if IE]><link rel="SHORTCUT ICON" href="favicon.ico"/><![endif]--><!-- Internet Explorer-->
+   
+  <!--http://localhost/map/accountant.json-->
+    
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="css/ie/ie.css" />
+    <![endif]-->
+	
+	
+<meta http-equiv="cache-control" content="no-cache" />
+
+<script src="http://localhost/map/jquery-1.6.2.min.js"></script>
+<!--<script src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAxEa8NI8pnRv8SSRSejuFl3M7oL1WWIds&sensor=false">//version 3-->
+<script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyAxEa8NI8pnRv8SSRSejuFl3M7oL1WWIds&sensor=false">
+
+
+type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+
+    var lat=37.4219720;
+    var lng= -122.0841430;
+    var zoom=14;
+    var map = null;
+    var geocoder = null;
+    var bounds = null;
+
+
+    function initialize() {
+        if (GBrowserIsCompatible()) {
+            map = new GMap2(document.getElementById("map"));
+            bounds = new GLatLngBounds;
+            map.addControl(new GLargeMapControl());
+            var MapTypes = map.getMapTypes();
+            MapTypes[0].getName= function() { return "Map";}
+            MapTypes[1].getName = function() { return "Satellite";}
+            MapTypes[2].getName = function() { return "Hybrid";}
+            map.hideControls();
+            map.setMapType(G_PHYSICAL_MAP);
+            GEvent.addListener(map, "mouseover", function(){map.showControls();});
+            GEvent.addListener(map, "mouseout", function(){map.hideControls();});
+            map.addControl(new GMapTypeControl());
+            //map.setCenter(new GLatLng(lat, lng), zoom);
+            geocoder = new GClientGeocoder();
+            //geocoder = new google.maps.Geocoder(); //version3
+        }
+    }
+
+      function getAddress(){
+	$(document).ready(function(){
+          	
+          $.getJSON('http://localhost/map/accountant.json', function(jsondata){
+     
+          var directories = jsondata.response_data.directories;
+          for (var i in directories)  {
+
+             address_a = directories[i].addressCity + ",";
+
+             address_b = directories[i].addressState;
+             	switch (address_b)
+		{
+                  
+                  case "AL":
+		    address_b ="Alabama";
+		    break;
+                  case "AK":
+		    address_b ="Alaska";
+		    break;
+                  case "AZ":
+		    address_b ="Arizona";
+		    break;
+                  case "AR":
+		    address_b ="Arkansas";
+		    break;
+		  case "CA":
+		    address_b ="California";
+		    break;
+		  case "CO":
+		    address_b ="Colorado";
+		    break;
+                  case "CT":
+		    address_b ="Connecticut";
+		    break;
+                  case "DE":
+		    address_b ="Delaware";
+		    break;
+                  case "DC":
+		    address_b ="District Of Columbia";
+		    break;
+                  case "FL":
+		    address_b ="Florida";
+		    break;
+                  case "GA":
+		    address_b ="Georgia";
+		    break;
+                  case "HI":
+		    address_b ="Hawaii";
+		    break;
+                  case "ID":
+		    address_b ="Idaho";
+		    break;
+
+                  case "IL":
+		    address_b ="Illinois";
+		    break;
+                  case "IN":
+		    address_b ="Indiana";
+		    break;
+                  case "IA":
+		    address_b ="Iowa";
+		    break;
+                  case "KS":
+		    address_b ="Kansas";
+		    break;
+                  case "KY":
+		    address_b ="Kentucky";
+		    break;
+
+
+
+
+                  case "NJ":
+		    address_b ="New Jersey";
+		    break;
+                  case "ND":
+		    address_b ="North Dakota";
+		    break;
+		  case "SC":
+		    address_b ="South Carolina";
+		    break;
+		  case "NC":
+		    address_b ="North Carolina";
+		    break;
+                  case "NY":
+		    address_b ="New York";
+		    break;
+		  case "MA":
+		    address_b ="Massachusetts";
+		    break;
+		  case "MD":
+		    address_b ="Maryland";
+		    break;
+                  
+                  
+                
+                  case "VA":
+		    address_b ="Virginia";
+		    break;
+        
+                  default:
+                    address_b = "not found";
+             
+
+              
+		}
+             address_c = "USA" + "</br>";
+             
+             address1 = address_a + address_b + address_c;
+             address2 = address_a + address_b + "</br>";
+             name = directories[i].name + "</br>";
+             mktExtId = directories[i].mktExtId;
+
+             //document.write(address1 + address2 + name + mktExtId + "</br>");
+             showAddress(address1,address2,name,mktExtId);
+           }
+
+          });
+      });
+    }
+    
+    
+
+    function showAddress(address1,address2,name,mktExtId) {
+        if (geocoder) {
+            geocoder.getLatLng(address1,function(point) {
+                if (point) {
+                    bounds.extend(point);
+                    map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+                    var billIcon = new GIcon(G_DEFAULT_ICON);
+                    billIcon.image = "images/blank.png";
+                    // Set up our GMarkerOptions object
+                    markerOptions = { icon:billIcon };
+						
+                    var marker = new GMarker(point, markerOptions);
+                    map.addOverlay(marker);
+						
+                    GEvent.addListener(marker, "mouseover", function() {
+                        marker.openInfoWindowHtml('<b>'+name+'</b><br />'+address2);
+                    });
+                    GEvent.addListener(marker, "mouseout", function() {
+                        marker.closeInfoWindow();
+                    });
+                    GEvent.addListener(marker, "click",  function() {
+                        window.location.href=logoUrl; 
+                    });
+                }
+            });
+		
+
+        }
+    }
+
+
+  
+
+</script>
+
+</head>
+<body>
+   
+<div id="map" style="float:left;width: 988px; height: 600px; background: url(images/loading.gif); background-repeat: no-repeat; background-position: center;border: 1px solid #fff; overflow: hidden;margin-bottom:10px"></div>
+
+<script type="text/javascript">
+             this.onload = function load() {
+             initialize();
+             getAddress();
+            }
+ </script>
+
+</body>
+</html>

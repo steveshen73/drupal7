@@ -1,0 +1,15 @@
+<html>
+<body>
+<p><iframe id="app_bill" style="border:1px solid #666CCC" title="html in an i-Frame" src="" frameborder="1" scrolling="auto" height="1100" width="850" >
+</iframe>
+</p>
+<!--doing the jquery way to make the IE work on this iframe-->
+<script>
+jQuery_1_7_2(document).ready(function(){
+
+    jQuery_1_7_2("iframe").attr("src", "http://localhost/json-api/reference.htm");
+
+});
+</script>
+</body>
+</html>

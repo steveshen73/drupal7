@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+$.getJSON('accountant.json', function(jsondata){
+    
+          var directories = jsondata['response_data']['directories'];
+          document.write(directories.length + "</br>");
+
+           var i;
+           document.write("[");
+           for(i=0; i<directories.length-1; i++)
+           {
+              address1 = '"' + directories[i].addressCity + "," + directories[i].addressState + '"' + ",";
+              //address2 = directories[i].addressCity + "," + directories[i].addressState + "</br>";
+              //name = directories[i].name + "</br>";
+              //mktExtId = directories[i].mktExtId;
+              //document.write(address1 + address2 + name + mktExtId + "</br>");
+   
+              document.write(address1);
+           }
+           if(i = directories.length-1)
+           {
+              address1 = '"' + directories[i].addressCity + "," + directories[i].addressState + '"';
+              document.write(address1 + "]") ;
+           }
+      
+         /*--  $.each(directories,function(i, item) {
+             address1 = '"'+ directories[i].addressCity + "," + directories[i].addressState + '"' + "</br>";
+             address2 = directories[i].addressCity + "," + directories[i].addressState + "</br>";
+             name = directories[i].name + "</br>";
+             mktExtId = directories[i].mktExtId;
+             
+            
+             document.write(address1 + address2 + name + mktExtId + "</br>");
+             
+
+          }); --*/ 
+
+  });
+});
+
+</script>
+
+</body>
+</html> 

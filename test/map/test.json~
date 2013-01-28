@@ -1,0 +1,30 @@
+{
+  "response_status" : 0,
+  "response_message" : "Success",
+  "response_data" : {
+    "total" : 961,
+    "directories" : [{
+      "name" : "A Calculated Solution -",
+      "addressCity" : "Scotia",
+      "addressState" : "NY",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxpipriu68md",
+      "mktExtId" : "cd01qazwsxpipriu68md",
+      "companyUrl" : "www.acalculatedsolution.com",
+      "description" : "We are a full service bookkeeping firm specializing in Quickbooks and Cloud Technologies.  From starting up your business to day to day processing,  we take care of your finances so you can focus on growing your business."
+    }
+
+{
+      "name" : "aBIZinaBOX Inc. -",
+      "addressCity" : "Evanston",
+      "addressState" : "IL",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxepdoik6m6k",
+      "mktExtId" : "cd01qazwsxepdoik6m6k",
+      "companyUrl" : "www.abizinabox.com",
+      "description" : "aBIZinaBOX is a business back office Swiss Army Knife with the flexibility and capacity to solve a multitude of support functions for any business. We combine: \r\n\r\nA full service American Institute of Certified Public Accountants [\"AICPA\"] Private Companies Practice Section [\"PCPS\"] member firm of certified public accountants and tax advisors which has been engaged in integrated financial advisory, technology and tax consultancy for almost thirty years. Our services and technologies include: \r\n\r\naBIZinaBOX Tech - Remote Monitoring & Management, Remote Back Up and Managed Firewall \r\n\r\naBIZinaBOX Financial - QuickBooks Online, bill.com - A/P and A/R GURUs, Virtual Accounting & Financial Support \r\n\r\naBIZinaBOX GAPS - Google Apps with select applications from the Google Apps Marketplace to customize functionality \r\n\r\naBIZinaBOX APPS - Salesforce CRM customized with applications from the Salesforce App Exchange \r\n\r\naBIZinaBOX Professional Services - full range of tax, financial advisory, technology and real estate consulting services\r\n\r\nSpecialties\r\nAICPA PCPS Member CPA FIrm, Google Apps for Business SMB Reseller, Salesforce Select Consulting Partner, Nimble.com Consulting Partner, aBIZinaBOX Tech, aBIZinaBOX Financial, aBIZinaBOX GAPS, aBIZinaBOX Apps, aBIZinaBOX Professional services"
+    }]
+ }
+}

@@ -1,0 +1,31 @@
+<html>
+  <head>
+
+    <title>Posting data and getting text with the Ajax Utility library</title>
+
+    <script type = "text/javascript" src = "ajaxutility.js"></script>
+
+    <script language = "javascript">
+
+      function display(text)
+      {
+        document.getElementById('targetDiv').innerHTML = text;
+      }
+
+    </script>
+  </head>
+
+  <body>
+
+    <h1>Posting data and getting text with the Ajax Utility library</h1>
+
+    <form>
+      <input type = "button" value = "Get the text" 
+      onclick = "postDataGetText('echoer.php', 'message=Hello from Ajax Utility.', display)">
+    </form>
+
+    <div id="targetDiv">The fetched text will go here.</div>
+
+  </body>
+
+</html>

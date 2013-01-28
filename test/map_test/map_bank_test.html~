@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Testing : About mutiple marker test : Branch / ATM map</title>
+	<link rel="stylesheet"		type="text/css" media="all"		href="https://www.arvest.com/ai/style.css" />
+	<link rel="stylesheet"		type="text/css" media="print"	href="https://www.arvest.com/ai/style_print.css" />
+	<link rel="Shortcut Icon"	type="image/vnd.microsoft.icon" href="https://www.arvest.com/images/ai/favicon.ico" />
+	<link rel="up" href="https://www.arvest.com/?page=about/arvest" />
+	<link rel="canonical" href="https://www.arvest.com/?page=about/arvest/map" />
+	<meta property="og:site_name" content="Arvest" />
+	<meta property="og:title" content="Arvest : About Arvest : Branch / ATM map" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://www.arvest.com/?page=about/arvest/map" />
+	<meta name="verify-v1" content="xufrK3cZMgdmKiO2Fh8YiDtA61/EgF9fyNKSWGW6Sys=" />
+	<meta http-equiv="X-UA-Compatible" content="IE=9,chrome=1" />
+	<!--<script type="text/javascript" src="https://www.arvest.com//common/firebuglite/firebug-lite-compressed.js"></script>-->
+	<script type="text/javascript" src="https://www.arvest.com/common/functions.js"></script>
+	<script type="text/javascript" src="https://www.arvest.com/common/prototype.js"></script>
+	<script type="text/javascript" src="https://www.arvest.com/common/scriptaculous/effects.js"></script>
+	<script type="text/javascript" src="https://www.arvest.com/common/scriptaculous/accordion.js"></script>
+	<script type="text/javascript" src="https://www.arvest.com/common/urchin/urchin.js"></script>
+	<script type="text/javascript">
+	//<![CDATA[
+	 
+	//]]>
+	</script>
+	<script type="text/javascript" src="https://www.arvest.com//ai/script-min.js"></script>
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAxEa8NI8pnRv8SSRSejuFl3M7oL1WWId&amp;v=3.3&amp;sensor=false&amp;libraries=geometry"></script>
+	<script type="text/javascript" src="https://www.arvest.com/ai/map_v3-min.js"></script>
+	 
+	<script type="text/javascript" >
+	//<![CDATA[
+	urchinTracker();
+	 
+Event.observe(window,'load',function() {
+	$('login_disp').observe('click',		dropNroll.showPopup.bindAsEventListener(dropNroll,$('login_disp')));
+	$('login_disp').observe('focus',		dropNroll.showPopup.bindAsEventListener(dropNroll,$('login_disp')));
+	$('login_disp').observe('blur',			dropNroll.hidePopup.bindAsEventListener(dropNroll,$('login_disp')))
+	$('login_menu').observe('mouseover',	dropNroll.showPopup.bindAsEventListener(dropNroll,$('login_disp')));
+	$('login_menu').observe('mouseout',		dropNroll.hidePopup.bindAsEventListener(dropNroll,$('login_disp')));
+	$$('#login_menu A').each( function(node) {
+		node.writeAttribute('tabindex',-1);
+		node.observe('click', function(evt) {
+			console.debug('click');
+			node = Event.element(evt)
+			name = node.readAttribute('name');
+			dropNroll.hidePopupNow();
+			form_swap(name,true);
+			Event.stop(evt);
+		});
+	});
+	form_swap('botn',false);
+	
+});
+//Event.observe(window,'load',function(){
+document.observe('dom:loaded',function() {
+	console.debug('secondaryNav script');
+	$$('#secondaryNav .accordion_toggle').each( function(accordion) {
+		var img = new Element('img',{
+			width:17,
+			height:11,
+			src:'/images/ai/tiny_arrow_right.png',
+			alt:'expand'
+		});
+		accordion.insert({ top: img.toHTML() + ' ' });
+	});
+	verticalAccordion = new accordion('secondaryNav',{
+		afterActivate : function(node) {
+			node.previous().down('IMG').writeAttribute({
+				src: '/images/ai/tiny_arrow_down.png',
+				alt: 'collapse'
+			});
+		},
+		afterDeactivate : function(node) {
+			node.previous().down('IMG').writeAttribute({
+				src: '/images/ai/tiny_arrow_right.png',
+				alt: 'expand'
+			});
+		}
+	});
+			var activate_node = $$('#secondaryNav .accordion_toggle[name="arvest"]')[0];
+		if ( activate_node )
+			verticalAccordion.activate(activate_node);
+});
+	//]]>
+	</script>
+	<style type="text/css">
+	<!--
+			.street-address {
+			margin-left:10pt;
+			text-indent:-10pt;
+		}
+		#locations .adr
+		{
+			margin-left:8pt;
+		}
+		#locations .info {
+			margin-left:8pt;
+			margin-top:.5em;
+			margin-bottom:.5em;
+		}
+		#locations td { padding-right:1em; }
+		#locations td.hours { white-space:nowrap; }
+		#locations tbody tr.hover { background-color:#AEDDEF; cursor:pointer; }
+		#locations tbody tr.hover td { background-image:none; }
+		#locations_list { height:500px; overflow-y:auto; }
+		/*#gmap h3 { margin-bottom:0px; }*/
+		#gmap { line-height:normal; }
+		.ast {
+			color:#CC0000;
+			font-family: Trebuchet MS, Tahoma, Lucida Grande, Verdana;
+			font-weight:bold;
+			vertical-align:-40%;
+			font-size:17pt;
+		}
+	-->
+	</style>
+</head>
+<body>
+
+<div id="wrapper">
+	<div id="header">
+		<a href="/"><img width="178" height="74" border="0" class="logo" src="/images/ai/logo_arvest.png" alt="Arvest" /></a>
+		
+		<div id="headerNav">
+			
+			<a href="/?page=personal">Home</a>
+			| <a href="/?page=about/arvest/faqs">FAQs</a>
+			| <a href="/?page=about/arvest/contact_us&amp;who=bank">Contact Us</a>
+			| <a href="/?page=about/arvest/careers">Careers</a>
+			| <a href="/?page=personal/calcs">Calculators</a>
+			<!--| <a href="#">FAQ</a>-->
+			| <a target="_new" href="/?page=blog">Blog</a>
+			| <a target="_new" href="http://www.facebook.com/pages/Arvest-Bank/52916668106"><img style="vertical-align:bottom; margin-bottom:0px;" width="24" height="24" src="/images/ai/icon_facebook.gif" alt="Arvest is on Facebook" /></a>
+			<a target="_new" href="http://www.twitter.com/arvestbank"><img style="vertical-align:bottom; margin-bottom:0px;" width="24" height="24" src="/images/ai/icon_twitter.png" alt="Follow Arvest on Twitter" /></a>
+			
+					<form class="gsc-search-box" accept-charset="utf-8" method="get">
+		<input type="hidden" name="page" value="about/search" />
+		<!--
+		<table cellspacing="0" cellpadding="0" class="gsc-search-box">
+		<tr>
+			<td class="gsc-input"><input type="text" autocomplete="off" size="10" class="gsc-input" name="search" title="Search Arvest" value="Search&hellip;" /></td>
+			<td class="gsc-search-button"><input type="submit" value="Search Arvest" class="gsc-search-button" title="search"/></td>
+		</tr>
+		</table>
+		<table cellspacing="0" cellpadding="0" class="gsc-branding">
+		<tr>
+			<td class="gsc-branding-user-defined"></td>
+			<td class="gsc-branding-text"><div class="gsc-branding-text">powered by</div></td>
+			<td class="gsc-branding-img-noclear"><img src="/images/ai/logo_google_small.png" class="gsc-branding-img-noclear" alt=""/></td>
+		</tr>
+		</table>
+		-->
+		<input type="text" autocomplete="off" size="10" class="gsc-input" name="search" title="Search Arvest" value="Search&hellip;"
+		onfocus="this.value='';" onblur="if(this.value=='')this.value='Search&hellip;';" /><input type="image" src="/images/ai/buttons/search_arrow.png" value="Search Arvest" class="gsc-search-button" title="Search" />
+		</form>
+		</div>
+	</div>
+
+	<div id="sideCol-l"><!-- width:193px -->
+		<div id="quick_login">
+	<img width="91" height="16" style="margin-bottom:4px;" src="/images/ai/login/account_login.png" alt="Account Login" />
+	<div id="login_disp"><a href="#"><img width="160" height="22" border="0" src="/images/ai/login/drop_botn.png" alt="" /></a></div>
+	<ul id="login_menu" style="display:none;">
+		<li><a name="botn"		href="">Arvest Online Banking</a></li>
+		<li><a name="cashman"	href="">Cash Manager</a></li>
+		<li><a name="rdc"		href="">Remote Deposit Capture</a></li>
+		<li><a name="amc"		href="">Mortgage</a></li>
+		<li><a name="sbc_con"	href="">Credit Card: Personal</a></li>
+		<li><a name="sbc_cor"	href="">Credit Card: Corporate</a></li>
+		<li><a name="sbc_pur"	href="">Credit Card: Purchasing</a></li>
+		<li><a name="rewards"	href="">Rewards</a></li>
+		<li><a name="arvest1"	href="">Arvest1</a></li>
+		<li><a name="trust"		href="">Trusts</a></li>
+		<li><a name="img"		href="">IMG</a></li>
+	</ul>
+	<div id="sbc_notice" class="emphasis_box" style="display:none; margin-top:.5em;">
+		<a href="javascript:void(0);" class="outline:0;" onclick="notice = $('sbc_notice').down('div'); if ( notice.visible() ) Effect.BlindUp(notice); else Effect.Appear(notice);">Important Login Notice</a>
+		<div style="display:none;">We will be updating account access on September 11th.  Once complete, you will need to re-register to access your account.  We apologize for the temporary inconvenience this may cause.  Please feel free to <a href="/?page=about/arvest/contact_us&amp;who=sbc">contact us</a> with any questions.</div>
+	</div>
+	<div id="login_forms">
+		<div id="login_form_amc" class="login_form ">				<form action="/my/login/index.php" method="post" accept-charset="UTF-8">
+				<input type="hidden" name="auth_mode" value="basic" />
+				<label for="user">User ID:</label>
+					<input id="user" type="text" name="user" class="inputbox float_right" autocomplete="off" />
+				<br clear="all" />
+				<label for="password">Password:</label>
+					<input id="password" type="password" name="password" class="inputbox float_right" autocomplete="off" />
+				<br clear="all" />
+				<!--<input type="submit" class="button" style="margin-top:.5em;" value="Login" />-->
+				<input type="image" name="submit_logon" width="47" height="21" border="0" align="absmiddle" src="/images/ai/login/login.png" alt="Login" />
+				</form></div>
+<div id="login_form_sbc_con" class="login_form "><div class="center"><a href="https://percreditservices.securitybankcard.com/SecurityBankCard_Consumer/Login.do"><img width="47" height="21" border="0" src="/images/ai/login/login.png" alt="Login" /></a>&nbsp; <a onmouseover="$('help').appear();" onmouseout="$('help').fade();" href="https://percreditservices.securitybankcard.com/SecurityBankCard_Consumer/AcctContactOutside.do"><img width="20" height="20" src="/images/ai/login/q.png" alt="login and password help" /></a><div id="help" style="display:none; position:absolute; font-size:.8em;">Click for login/password help</div></div></div>
+<div id="login_form_sbc_cor" class="login_form "><div class="center"><a href="https://www.centresuite.com/Centre?securitybankcard"><img width="47" height="21" border="0" src="/images/ai/login/login.png" alt="Login" /></a></div></div>
+<div id="login_form_sbc_pur" class="login_form "><div class="center"><a href="https://www.centresuite.com/Centre?sbc"><img width="47" height="21" border="0" src="/images/ai/login/login.png" alt="Login" /></a></div></div>
+<div id="login_form_rdc" class="login_form "><div class="center"><a href="https://www.arvest.blilk.com/"><img width="47" height="21" border="0" src="/images/ai/login/login.png" alt="Login" /></a></div></div>
+<div id="login_form_temp" class="login_form "></div>
+<div id="login_form_botn" class="login_form active">			<form onsubmit="return botn_submit(this);" method="post" action="https://inet-banking.arvest.com/banking/retail/logon/logon?isIndividual=true">
+				<!--<input type="hidden" name="submit" value="Login" />-->
+				<table cellpadding="0" cellspacing="0" border="0">
+				<tr>
+					<td><input type="text" class="inputbox" style="width:80px; margin-right:4px;" name="j_username" placeholder="Login ID" size="12" maxlength="32" autocomplete="off" /></td>
+					<td><input onclick="this.form.submit();" type="image" width="47" height="21" border="0" src="/images/ai/login/login.png" alt="Login" />&nbsp;</td>
+					<td><a onmouseover="$('botn_help').appear();" onmouseout="$('botn_help').fade();" href="/?page=personal/online/botn/password"><img width="20" height="20" src="/images/ai/login/q.png" alt="login and password help" /></a></td>
+				</tr>
+				</table>
+				<input type="hidden" id="accessibilityMode" name="accessibilityMode" value="" />
+			</form>
+			<div id="botn_help" style="display:none; position:absolute; font-size:.8em;">Click for login/password help</div></div>
+	</div>
+</div>
+	
+		<div id="secondaryNav">
+			<img width="116" height="12" src="https://www.arvest.com/images/ai/nav/arvest_site_nav.png" alt="Arvest Site Navigation" /><div id="secondaryNavInner"><h2 class="accordion_toggle" name="arvest">About Arvest</h2><ul class="accordion_content"><li ><a href="/?page=about/arvest/history">Arvest History</a></li><li ><a href="/?page=about/arvest/divisions">Arvest Divisions</a></li><li ><a href="/?page=about/arvest/contact_us">Contact Us</a></li><li ><a href="/?page=about/arvest/careers">Career Opportunities</a></li><li ><a href="/?page=about/arvest/media">Media Room</a></li><li ><a href="/?page=about/arvest/sitemap">Site Map</a></li><li class="current"><a href="https://www.arvest.com/?page=about/arvest/map">Branch / ATM map</a></li><li ><a href="https://www.arvest.com/?page=about/arvest/faqs">FAQs</a></li></ul><h2 class="accordion_toggle" name="community">Community</h2><ul class="accordion_content"><li ><a href="https://www.arvest.com/?page=about/community/service">The Communities We Serve</a></li><li ><a href="https://www.arvest.com/?page=about/community/giving">Charitable Giving</a></li></ul><h2 class="accordion_toggle" name="ps">Privacy &amp; Security</h2><ul class="accordion_content"><li ><a href="https://www.arvest.com/?page=about/ps/report">Report Fraud</a></li><li ><a href="https://www.arvest.com/?page=about/ps/protection">Consumer Protection</a></li><li ><a href="https://www.arvest.com/?page=about/ps/privacy">Privacy Policy</a></li><li ><a target="_new" href="https://www.arvest.com/?page=about/ps/fdic">FDIC Information</a></li></ul></div><script type="text/javascript" >
+$$('#secondaryNav .accordion_toggle').each( function(accordion) {
+		accordion.next(0).setStyle({ display: 'none', height: '0px' });
+});
+</script>
+		</div>
+		<div class="adSpace">
+			<a href="http://www.arvestmoneyskills.com" target="_new"><img width="193" height="209" src="https://www.arvest.com/images/ai/promo/narrow/09ABG075_MoneySkills2.jpg" alt="Arvest Money Skills" /></a><a href="https://www.arvest.com/?page=personal/credit_loans/cards/platinum"><img width="193" height="209" src="https://www.arvest.com/images/ai/promo/narrow/card_platinum.png" alt="" /></a>
+		</div>
+	</div>
+
+	<div id="main" class="interior wide">
+
+		<div id="mainNav">
+			<div id="mainNavInner">
+			<p class="displayDate">Wednesday, November 14, 2012</p>
+					<map id="menubar" name="menubar"><area shape="rect" coords="0,  0,141,37" href="/?page=personal" alt="Personal" title="Personal" />
+<area shape="rect" coords="142,0,271,37" href="https://www.arvest.com/?page=business" alt="Business" title="Business" />
+<area shape="rect" coords="272,0,431,37" href="https://www.arvest.com/?page=investments" alt="Investments" title="Investments" />
+<area shape="rect" coords="432,0,531,37" href="https://www.arvest.com/?page=about" alt="Alt" title="Alt" class="current" />
+</map>
+		<img id="menubarUp"		usemap="#menubar" width="532" height="38" border="0" src="https://www.arvest.com/images/ai/nav/main_off.png" alt="" />
+		<img id="menubarOver"	usemap="#menubar" width="532" height="38" border="0" src="https://www.arvest.com/images/ai/nav/main_on.png" alt="" />
+	
+			</div>
+		</div>
+
+		<div style="height:25px;">
+			<!--
+			former breadcrumb
+			-->
+		</div>
+
+		<div id="contentHeader-b">
+			<div id="pageHeader"> <p><a href="https://www.arvest.com/?page=about/arvest"></a></p></div>
+			<div id="breadcrumbs">
+				<a href="/">Home</a> &gt; <a href="https://www.arvest.com/?page=about">About</a> &gt; Branch / ATM map
+			</div>
+		</div>
+		<div id="contentHeader-c">
+			<div id="atm">		<h4>Branch and ATM</h4>
+		<form action="https://www.arvest.com/?page=about/arvest/map" method="post" id="loc_q_form">
+			<label for="loc_query">Locator</label>
+			<div id="loc_q_container">
+				<div id="loc_q_input_back"></div>
+				<input name="loc_q" id="loc_query" type="text" value="Enter City or Zip" onfocus="this.value=&quot;&quot;" />
+				<input type="image" src="https://www.arvest.com/images/dot-clear.gif" id="loc_q_go" value="Go" />
+			</div>
+			<br clear="all" />
+		</form><p>Find an Arvest Bank Branch or ATM location in your area.</p></div>
+		</div>
+
+		<div id="content-b">
+						<!-- begin Featured Content Section -->
+			<div id="contentBox">
+				<div id="contentBoxInner">
+					<!--<div style="float:left; height:260px; width:1px;"></div>-->
+					 
+					
+					
+
+<div id="gmap" style="width:766px; height:500px; margin-left:-5px; margin-right:-5px;"></div>
+<form id="map_options"><input id="show_0" name="show[]" type="checkbox" value="branch" checked="checked" /><label for="show_0">Branches</label>
+<input id="show_1" name="show[]" type="checkbox" value="atm" checked="checked" /><label for="show_1">ATMs</label>
+<img id="ajax_loader" style="display:none;" width="16" height="16" src="/images/ai/ajax_loader.gif" alt="" /></form>
+<div id="locations"></div>
+
+	
+					<!--<div id="searchResults" style="display:none;"></div>-->
+					<div style="clear:both; height:1px; overflow:hidden;"></div>
+				</div>
+			</div>
+			<!-- end Featured Content Section -->
+		</div>
+		<div id="content-c">
+			
+		</div>
+		<div style="clear:both;"></div>
+
+	</div><!-- end main  -->
+	<div style="clear:both;"></div>
+
+	<div id="reqLogos">
+		<img src="/images/ai/logo_fdic.png" alt="FDIC" /> <img src="/images/ai/logo_lender.png" alt="Lender" />
+	</div>
+
+	<div id="footer">
+		<p>Copyright &copy; 2012 Arvest Bank. All Rights Reserved.</p>
+		<p id="footerNav">
+			<a href="/">Home</a>
+			| <a href="/?page=about/arvest/contact_us&amp;who=bank">Contact Us</a>
+			| <a href="/?page=about/arvest/careers">Careers</a>
+			| <a href="/?page=about/arvest/map">Branch &amp; ATM Locator</a>
+			| <a href="/?page=about/arvest/sitemap">Site Map</a>
+			| <a href="/?page=about/ps/privacy">Privacy &amp; Security</a><!--
+			| <a href="/?page=about/arvest/map">FAQs</a>
+			| <a href="/?page=about/arvest/map">Site Map</a>
+			-->
+			</p>
+		<div class="disclaimer">
+			<p>All Arvest banks are Equal Housing Lenders and Member FDIC.<br />
+			Securities and Insurance Products: <b>Not Insured by FDIC or any Federal Government Agency, May Lose Value, Not a Deposit of or Guaranteed by a Bank or any Bank Affiliate.</b><br />
+			Securities products are provided by Arvest Asset Management, member FINRA/SIPC, a non-bank affiliate of Arvest Bank Group, Inc. <br />
+			Brokerage Accounts carried by and transactions cleared through First Clearing, LLC, member NYSE/SIPC or Raymond James &amp; Associates, Inc., member NYSE/SIPC. <br />
+			In Arkansas, Oklahoma and Missouri, insurance products are offered through Arvest Insurance, Inc., which is a non-bank registered insurance agency, affiliated with Arvest Bank Group, Inc.<br />
+			Insurance products are marketed through Arvest Asset Management, but are underwritten by unaffiliated insurance companies. Trust services are provided by Arvest Trust Company, N.A.
+			</p>
+		</div>
+	</div>
+</div>
+<div id="modal_alert" class="hidden">
+	
+</div>
+
+</body>
+</html>
+

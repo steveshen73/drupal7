@@ -1,0 +1,108 @@
+<html>
+  <head>
+
+    <title>Using two XMLHttpRequest objects</title>
+
+    <script language = "javascript">
+
+      var menu;
+
+      var XMLHttpRequestObject = false; 
+
+      if (window.XMLHttpRequest) {
+        XMLHttpRequestObject = new XMLHttpRequest();
+      } else if (window.ActiveXObject) {
+        XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      var XMLHttpRequestObject2 = false; 
+
+      if (window.XMLHttpRequest2) {
+        XMLHttpRequestObject2 = new XMLHttpRequest();
+        XMLHttpRequestObject2.overrideMimeType("text/xml");
+      } else if (window.ActiveXObject) {
+        XMLHttpRequestObject2 = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      function getmenu1()
+      {
+        if(XMLHttpRequestObject) {
+          XMLHttpRequestObject.open("GET", "menu1.xml"); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+            var xmlDocument = XMLHttpRequestObject.responseXML;
+            menu = xmlDocument.getElementsByTagName("menuitem");
+            listmenu();
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function getmenu2()
+      {
+        if(XMLHttpRequestObject2) {
+          XMLHttpRequestObject2.open("GET", "menu2.xml"); 
+
+          XMLHttpRequestObject2.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject2.readyState == 4 && 
+              XMLHttpRequestObject2.status == 200) { 
+            var xmlDocument = XMLHttpRequestObject2.responseXML;
+            menu = xmlDocument.getElementsByTagName("menuitem");
+            listmenu();
+            } 
+          } 
+
+          XMLHttpRequestObject2.send(null); 
+        }
+      }
+
+      function listmenu ()
+      {
+        var loopIndex;
+        var selectControl = document.getElementById('menuList');
+
+        for (loopIndex = 0; loopIndex < menu.length; loopIndex++ )
+        {
+            selectControl.options[loopIndex] = new 
+               Option(menu[loopIndex].firstChild.data);
+        }
+    }
+    
+    function setmenu()
+    {
+      document.getElementById('targetDiv').innerHTML = 
+        "You selected " + menu[document.getElementById           
+          ('menuList').selectedIndex].firstChild.data;
+    }
+
+    </script>
+  </head>
+
+  <body>
+
+    <h1>Using two XMLHttpRequest objects</h1>
+
+    <form>
+      <select size="1" id="menuList" 
+        onchange="setmenu()">
+        <option>Select a menu item</option>
+      </select>
+      <br>
+      <br>
+      <input type = "button" value = "Select menu 1" 
+        onclick = "getmenu1()"> 
+      <input type = "button" value = "Select menu 2" 
+        onclick = "getmenu2()"> 
+    </form>
+
+    <div id="targetDiv" width =100 height=100>Your lunch selection will appear here.</div>
+
+  </body>
+
+</html>

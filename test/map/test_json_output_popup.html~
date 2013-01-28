@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+     
+           $.getJSON('http://localhost/map_test/accountant.json', function(jsondata){
+    
+		  var directories = jsondata['response_data']['directories'];
+		  document.write(directories.length + "</br>");
+
+		   document.write("[");
+		   for(var i=0; i<directories.length-1; i++)
+		   {
+		      address = directories[i].addressCity + "," + directories[i].addressState + '"' + ",";
+		      name = '"' + directories[i].name + " ";
+		      popContent = name + address;
+                      document.write(popContent)
+		   }
+	           if (i = directories.length-1)
+                   {
+                      address = directories[i].addressCity + "," + directories[i].addressState + '"';
+		      name = '"' + directories[i].name + " ";
+		      popContent = name + address;
+                      document.write(popContent + "]"); 
+                   }
+
+		 });
+	      });
+
+</script>
+
+</body>
+</html> 

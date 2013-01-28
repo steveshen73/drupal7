@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>
+      Scrolling with JavaScript
+    </title>
+    <script language="JavaScript">
+        var text = "Hello from JavaScript! Hello from JavaScript! "
+        function scroller() 
+        {
+            window.status = text
+            text = text.substring(1, text.length) + text.substring(0, 1)
+            setTimeout("scroller()", 150)
+        }
+    </script>
+  </head>
+
+  <body onload="scroller()">
+    <h1>
+      Scrolling status bar text with JavaScript
+    </h1>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Using the else statement</title>
+
+    <script language="javascript">
+
+      function showMessage() 
+      {
+        var account = 900;
+        if(account > 1000) {
+            document.getElementById('targetDiv').innerHTML = 
+                "Time for a party!";
+        }
+        else {
+            document.getElementById('targetDiv').innerHTML = 
+                "Get back to work!";
+        }
+      }
+    </script>
+
+  </head> 
+
+  <body onload="showMessage()">
+
+    <h1>Using the else statement</h1>
+
+    <div id="targetDiv">
+    </div>
+
+    </body>
+</html>

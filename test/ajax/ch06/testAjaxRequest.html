@@ -1,0 +1,44 @@
+<html>
+  <head>
+
+    <title>Testing the AjaxRequest framework</title>
+
+    <script src = "AjaxRequest.js"></script>
+
+    <script language = "javascript">
+
+      function useAjaxRequest()
+      {
+        AjaxRequest.get(
+        {
+          'url':'AjaxRequest.txt',
+          'onSuccess': callback, 
+          'timeout':2000,
+          'onTimeout':function(){alert('Sorry, it timed out.');}
+        }
+        );
+      }
+
+      function callback(XMLHttpRequestObject) 
+      {
+        document.getElementById("targetDiv").innerHTML 
+          = XMLHttpRequestObject.responseText; 
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing the AjaxRequest framework</h1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useAjaxRequest()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body>
+</html>

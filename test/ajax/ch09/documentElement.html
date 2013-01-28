@@ -1,0 +1,57 @@
+<html>
+  <head>
+
+    <title>Getting the Document Element</title>
+
+    <script language = "javascript">
+
+      function getDocumentElement()
+      {
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new 
+            ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+          XMLHttpRequestObject.open("GET", "event.xml", true); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+              var xmlDocument = XMLHttpRequestObject.responseXML;
+              var documentElement = xmlDocument.documentElement;
+              if(documentElement){
+                document.getElementById("targetDiv").innerHTML =
+                  "Got the document element.";
+              }
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+    </script>
+
+  </head>
+
+  <body>
+
+    <h1>Getting the Document Element</h1>
+
+    <form>
+      <input type = "button" value = "Get the document element" 
+        onclick = "getDocumentElement()"> 
+    </form>
+
+    <div id="targetDiv" width =100 height=100>
+      The result will appear here.
+    </div>
+
+  </body>
+
+</html>

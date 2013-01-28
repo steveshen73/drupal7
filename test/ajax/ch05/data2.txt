@@ -1,0 +1,2 @@
+This text was also fetched using Ajax. 
+

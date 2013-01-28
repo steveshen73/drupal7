@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Passing multiple function arguments</title>
+
+    <script language="javascript">
+      function showMessage (message, divName)
+      {
+        document.getElementById(divName).innerHTML = message
+      }
+    </script>
+  </head>
+
+  <body onload="showMessage(
+    'You are seeing this thanks to JavaScript', 'targetDiv')">
+    <h1>Passing multiple function arguments</h1>
+
+    <div id="targetDiv">
+    </div>
+
+  </body>
+</html>

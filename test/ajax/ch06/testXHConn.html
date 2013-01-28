@@ -1,0 +1,43 @@
+<html>
+  <head>
+
+    <title>Testing the XHConn framework</title>
+
+    <script src = "XHConn.js"></script>
+
+    <script language = "javascript">
+
+      function useXHConn()
+      {
+        var xhconnObject = new XHConn();
+
+        if (!xhconnObject) {
+          alert("XHConn object creation failed.");
+        }
+
+        xhconnObject.connect("xhconn.txt", "GET", "", callback);
+      }
+
+      function callback(XMLHttpRequestObject) 
+      {
+        document.getElementById("targetDiv").innerHTML 
+          = XMLHttpRequestObject.responseText; 
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing the XHConn framework</h1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useXHConn()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body>
+</html>

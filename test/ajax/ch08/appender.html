@@ -1,0 +1,57 @@
+<html>
+  <head>
+
+    <title>Using the DOM to append elements</title>
+
+    <script language = "javascript">
+
+      function getData()
+      {
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+        
+          XMLHttpRequestObject.open("GET", "data1.txt"); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+              var newP = document.createElement("p");
+              var newText = document.createTextNode(XMLHttpRequestObject.responseText);
+              newP.appendChild(newText);
+              var div = document.getElementById("targetDiv");
+              div.appendChild(newP);
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+    </script>
+  </head>
+
+  <body>
+
+    <h1>Using the DOM to append elements</h1>
+
+    <form>
+      <input type = "button" value = "Get the message" 
+        onclick = "getData()"> 
+    </form>
+
+    <div id="targetDiv" width =100 height=100>
+      <p id="text"></p>
+    </div>
+
+  </body>
+
+</html>
+

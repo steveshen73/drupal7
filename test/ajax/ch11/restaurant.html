@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>
+          The Dynamic HTML Restaurant
+        </title>
+
+        <script language="JavaScript">
+            var dateNow = new Date();
+            var hourNow = dateNow.getHours();
+            document.write( "<center>");
+            document.write( "<h1>");
+            document.write("Welcome to the Dynamic HTML Restaurant");
+            document.write( "</h1>");
+            document.write( "</center>");
+
+            if (hourNow < 5 || hourNow > 23){
+                document.write( "<center>");
+                document.write( "<h1>");
+                document.write( "Sorry, we're closed." );
+                document.write( "</h1>");
+                document.write( "</center>");
+            }
+            
+            if (hourNow > 6 && hourNow < 12 ) { 
+                document.write( "<center>");                               
+                document.write( "<table border>");
+                document.write(                                           
+                    "<tr><th colspan = 2>Breakfast</th></tr>");       
+                document.write(                                           
+                    "<tr><td>Eggs</td><td>$2.50</td></tr>");
+                document.write(                                           
+                    "<tr><td>Pancakes</td><td>$2.00</td></tr>");           
+                document.write(                                           
+                    "<tr><td>Oatmeal</td><td>$1.00</td></tr>");          
+                document.write(                                           
+                    "<tr><td>Waffles</td><td>$1.50</td></tr>");        
+                document.write( "</table>");                               
+                document.write( "</center>");                              
+                document.write( "</table>");                               
+                document.write( "</center>");                              
+            }
+            
+            if ( hourNow >= 12 && hourNow < 17 ) { 
+                document.write( "<center>");
+                document.write( "<table border>");
+                document.write(                                            
+                    "<tr><th colspan = 2>Lunch</th></tr>");
+                document.write(                                            
+                    "<tr><td>Turkey Sandwich</td><td>$3.50</td></tr>");           
+                document.write(                                            
+                    "<tr><td>Chicken Sandwich</td><td>$3.50</td></tr>");
+                document.write(                                            
+                    "<tr><td>Ham Sandwich</td><td>$3.00</td></tr>");
+                document.write(                                            
+                    "<tr><td>Alligator Nuggets</td><td>$5.00</td></tr>");
+                document.write(                                            
+                    "<tr><td>Ostrich</td><td>$4.50</td></tr>");
+                document.write(                                            
+                    "<tr><td>Chili</td><td>$2.00</td></tr>");
+                document.write(                                            
+                    "<tr><td>Crocodile Soup</td><td>$1.50</td></tr>");            
+                document.write( "</table>");                                
+                document.write( "</center>");
+            }
+            
+            if ( hourNow >= 17 && hourNow < 22 ) { 
+                document.write( "<center>");                               
+                document.write( "<table border>");
+                document.write(                                           
+                    "<tr><th colspan = 2>Dinner</th></tr>");
+                document.write(                                           
+                    "<tr><td>Lobster</td><td>$7.50</td></tr>");           
+                document.write(                                           
+                    "<tr><td>Filet Mignon</td><td>$8.00</td></tr>");    
+                document.write(                                           
+                    "<tr><td>Flank Steak</td><td>$7.00</td></tr>");        
+                document.write(                                           
+                    "<tr><td>Tube Steak</td><td>$3.50</td></tr>");          
+                document.write(                                           
+                    "<tr><td>Salad</td><td>$2.50</td></tr>");           
+                document.write(                                           
+                    "<tr><td>Potato</td><td>$1.50</td></tr>");          
+                document.write(                                           
+                    "<tr><td>Eggplant</td><td>$1.50</td></tr>");        
+                document.write( "</table>");                               
+                document.write( "</center>");                              
+            }
+    
+        </script>
+    </head>
+
+    <body>
+    </body>
+        
+</html>

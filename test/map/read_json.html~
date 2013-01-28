@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+  function updateMe(){
+    var x = 0;
+    var jsonstr = '{"date":"July 4th", "event":"Independence Day"}';
+    var activity=JSON.parse(jsonstr);
+    while(x<10){
+      //date = 
+      document.getElementById("date"+x).innerHTML = activity.date;
+      //event = 
+      document.getElementById("event"+x).innerHTML = activity.event;
+      x++;
+      //document.write(activity.date + " " + activity.event);
+    }
+
+</script>
+
+
+
+</head>
+<body onload="updateMe()">
+<div id="date"></div>
+<div id="event"></div>
+
+<!--
+<script src="http://localhost/map/activity.jsonp"></script>
+<script type="text/javascript">
+  function updateMe(){
+    var x = 0;
+    var activity=jsonstr;
+    foreach (i in activity) {
+        date = document.getElementById(i.date).innerHTML = activity.date;
+        event = document.getElementById(i.event).innerHTML = activity.event;
+    }
+  }
+</script>
+-->
+
+
+
+</body>
+</html>

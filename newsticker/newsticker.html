@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Bill.com RSS live blog ticker</title>
+
+<script src="rssticker.js" type="text/javascript">
+
+/***********************************************
+Bill.com
+***********************************************/
+
+</script>
+
+<style type="text/css">
+
+/*Sample CSS to style the two tickers*/
+
+.billclass{
+
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #333333;
+    background-color:#ffffff;
+
+filter:progid:DXImageTransform.Microsoft.alpha(opacity=80); /*Specify fade effect in IE. Remove if desired.*/
+-moz-opacity: 0.8; /*Specify fade effect in Firefox. Remove if desired.*/
+}
+
+.billclass a{
+text-decoration: none;
+border: 0px ;
+background-color: #ffffff;
+}
+
+.rsstitle{ /*shared class for all title elements in an RSS feed*/
+font-weight: normal;
+}
+
+.rssdate{ /*shared class for all date elements in an RSS feed*/
+color: gray;
+font-size: 65%;
+}
+
+.rssdescription{ /*shared class for all description elements in an RSS feed*/
+}
+
+</style>
+
+</head>
+<body>
+
+<div style="height: 225px">
+<script type="text/javascript">
+//rssticker_ajax(RSS_id, cachetime, divId, divClass, delay, optionalswitch)
+//1) RSS_id: "Array key of RSS feed in PHP script"
+//2) cachetime: Time to cache the feed in minutes (0 for no cache)
+//3) divId: "ID of DIV to display ticker in. DIV dynamically created"
+//4) divClass: "Class name of this ticker, for styling purposes"
+//5) delay: delay between message change, in milliseconds
+//6) optionalswitch: "optional arbitrary" string to create additional logic in call back function
+
+document.write("");
+// can add date parameter if it is necessary, the css for date is gray
+new rssticker_ajax("BILL", 0, "billbox", "billclass", 3000);
+
+</script>
+</div>
+
+</body>
+</html>

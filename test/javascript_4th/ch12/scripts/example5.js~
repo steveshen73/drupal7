@@ -1,0 +1,33 @@
+ 
+    function addLoadEvent(func)
+    {
+        var originLoad = window.load;
+        if(typeof window.load != 'function')
+        {
+           window.load = func;
+        }
+        else {
+                window.load = function(){
+                   originLoad();
+                   func();
+                }
+             }
+
+
+    }
+
+    function divAdvert_onMouseOver()
+    {
+        var divAdvert = document.getElementById("divAdvert");
+        divAdvert.className = "newStyle";
+    }
+
+    function divAdvert_onMouseOut()
+    {
+        var divAdvert = document.getElementById("divAdvert");
+        divAdvert.className = "defaultStyle";
+
+    }
+    
+    addLoadEvent(divAdvert_onMouseOver);
+    //addLoadEvent(divAdvert_onMouseOut);

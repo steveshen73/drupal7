@@ -1,0 +1,40 @@
+<html> 
+  <head> 
+    <title>Testing the Majax framework</title> 
+
+  <script type="text/javascript" src="majax.js"></script>
+
+    <script language = "javascript">
+
+      function useMajax()
+      {
+        var url = "majax.txt";
+        majax_get (url, null);
+      }
+
+      function handler()
+      {
+        var div = document.getElementById ("targetDiv"); 
+        div.innerHTML = MAJAX_RESPONSE;
+      }
+
+      MAJAXCM_COMPLETE.register(handler);
+  
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Testing the Majax framework</H1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useMajax()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Reading All Form Data</title>
+  </head>
+
+  <body>
+    <center>
+      <h1>Reading All Form Data</h1>
+
+      <form method="post" action="formdata.php">
+
+        Please enter your name:
+        <input name="name" type="text">
+
+        <br> 
+        <br>
+        Select your favorite sandwiches(s):
+        <br>
+        <br>
+        <select name="sandwiches[]" multiple>
+          <option>Ham</option>
+          <option>Turkey</option>
+          <option>Salami</option>
+          <option>Chicken</option>
+        </select>
+
+        <br>
+        <br>
+
+        <input type="submit" value="Submit">
+      </form>
+    </center>
+  </body>
+</html>

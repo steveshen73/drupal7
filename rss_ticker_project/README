@@ -1,0 +1,9 @@
+rss_sticker project readme file:
+-------------------------------
+Open source-- modified by Honglin(steve) shen
+Date: 10/27/2012
+
+rssticker.js -- the javascript file using ajax with proxy.php file to fetch data from cross domain(need lastrss/proxy.php)
+proxy.php ---(lastrss/proxy.php) proxy file to read cross domain news ticker (XML file)
+lastRSS.php---(lastrss/lastRSS.php) class file for the news ticker, needed by proxy.php
+newsticker.html -- the html file to show rss ticker (include rssticker.js)

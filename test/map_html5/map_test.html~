@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css"
+rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+var geocoder;
+var map;
+var infowindow = new google.maps.InfoWindow();
+
+var places = [];
+var popup_content = [ /* all your popup_content */];
+var address = [{
+      "name" : "A Calculated Solution -",
+      "addressCity" : "Scotia",
+      "addressState" : "NY",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxpipriu68md",
+      "mktExtId" : "cd01qazwsxpipriu68md",
+      "companyUrl" : "www.acalculatedsolution.com",
+      "description" : "We are a full service bookkeeping firm specializing in Quickbooks and Cloud Technologies.  From starting up your business to day to day processing,  we take care of your finances so you can focus on growing your business."
+    }, {
+      "name" : "aBIZinaBOX Inc. -",
+      "addressCity" : "Evanston",
+      "addressState" : "IL",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxepdoik6m6k",
+      "mktExtId" : "cd01qazwsxepdoik6m6k",
+      "companyUrl" : "www.abizinabox.com",
+      "description" : "aBIZinaBOX is a business back office Â“Swiss Army KnifeÂ” with the flexibility and capacity to solve a multitude of support functions for any business. We combine: \r\n\r\nA full service American Institute of Certified Public Accountants [\"AICPA\"] Private Companies Practice Section [\"PCPS\"] member firm of certified public accountants and tax advisors which has been engaged in integrated financial advisory, technology and tax consultancy for almost thirty years. Our services and technologies include: \r\n\r\naBIZinaBOX Tech - Remote Monitoring & Management, Remote Back Up and Managed Firewall \r\n\r\naBIZinaBOX Financial - QuickBooks Online, bill.com - A/P and A/R GURUs, Virtual Accounting & Financial Support \r\n\r\naBIZinaBOX GAPS - Google Apps with select applications from the Google Apps Marketplace to customize functionality \r\n\r\naBIZinaBOX APPS - Salesforce CRM customized with applications from the Salesforce App Exchange \r\n\r\naBIZinaBOX Professional Services - full range of tax, financial advisory, technology and real estate consulting services\r\n\r\nSpecialties\r\nAICPA PCPS Member CPA FIrm, Google Apps for Business SMB Reseller, Salesforce Select Consulting Partner, Nimble.com Consulting Partner, aBIZinaBOX Tech, aBIZinaBOX Financial, aBIZinaBOX GAPS, aBIZinaBOX Apps, aBIZinaBOX Professional services"
+    }, {
+      "name" : "Account-Ables",
+      "addressCity" : "Williston",
+      "addressState" : "FL",
+      "bdcCertified" : true,
+      "useSince" : "2008",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxuxswjqjd0f",
+      "mktExtId" : "cd01qazwsxuxswjqjd0f",
+      "companyUrl" : "www.Account-Ables.com",
+      "description" : "THE Bill.com Guru!  We were on of the first companies to use Bill.com to manage our own A/P & A/R and to support small businesses.  As a former member of the Bill.com team for almost 5 years I have extensive knowledge of the application and have helped 1000's of small business and accounting firms successfully implement and deploy Bill.com.  I am the master of Developing workflows to ensure efficiency and tight internal controls.   Contact my office for more information and rates."
+    }, {
+      "name" : "AccountSolve LLC",
+      "addressCity" : "Perkasie",
+      "addressState" : "PA",
+      "bdcCertified" : true,
+      "useSince" : "2010",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxvqrpcf5jle",
+      "mktExtId" : "cd01qazwsxvqrpcf5jle",
+      "companyUrl" : "www.account-solve.com",
+      "description" : "AccountSolve LLC is an accounting and consultancy firm located in a suburb of Philadelphia.  Our clients range from solopreneurs to multi-million dollar corporations.  We are dedicated to helping them succeed efficiently in a fast paced, cloud based, ever changing business environment.  We offer outsourced accounting, advisory services, and QuickBooks consulting."
+    }, {
+      "name" : "Accretive Business Solutions, LLC",
+      "addressCity" : "Yorba Linda",
+      "addressState" : "CA",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01ltfwcrou_6nh4zc3",
+      "mktExtId" : "cd01ltfwcrou_6nh4zc3",
+      "companyUrl" : "www.accbs.net",
+      "description" : "Accretive Business Solutions LLC is a Southern California-based provider of finance and accounting outsource solutions and business consulting services.  We serve as a business partner to progressive-minded companies who realize the benefits of outsourcing certain portions, or all, of the Finance/Accounting function.  For those businesses opting to maintain staff internally, our consulting services serve as a path towards increased efficiency, enhanced transparency in your internal processing and an increased level of productivity from your staff."
+    }, {
+      "name" : "Adamson LLC  -",
+      "addressCity" : "Richmond",
+      "addressState" : "IN",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxwzypgk6lcj",
+      "mktExtId" : "cd01qazwsxwzypgk6lcj",
+      "companyUrl" : "www.adamsonllc.com",
+      "description" : "Providers of Virtual Accounting Services, powered in part by Bill.com"
+    }, {
+      "name" : "Argy Accounting Solutions, LLC -",
+      "addressCity" : "McLean",
+      "addressState" : "VA",
+      "bdcCertified" : true,
+      "useSince" : "2010",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxuyuvst5zvu",
+      "mktExtId" : "cd01qazwsxuyuvst5zvu",
+      "companyUrl" : "http://accountingsolutions.argy.com",
+      "description" : "Argy Accounting Solutions provides quality outsourced accounting services and financial information customized to meet client needs so company management can concentrate on growing their businesses.Â  We call this \"Accounting for Your Success.\""
+    }, {
+      "name" : "ASAP Accounting and Payroll, Inc.",
+      "addressCity" : "Telluride",
+      "addressState" : "CO",
+      "bdcCertified" : true,
+      "useSince" : "2009",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxklaxfx1u90",
+      "mktExtId" : "cd01qazwsxklaxfx1u90",
+      "companyUrl" : "http://www.businessasap.com",
+      "description" : "Companies at the tipping point of next level growth need far more than one-off financial servicesÂ—they need a highly efficient process for minimizing inefficiencies and maximizing profit. ThatÂ’s what we doÂ—and what we help you do.  \r\n\r\nWe establish efficient methodologies which help your company retain more profitsÂ…which Â helps you grow. We provide financial oversight, helping you stay on top of fiscal changes, leading to greater efficiency, more retained profits, and greater growth potential.  We can start anywhere you likeÂ—with payroll, or with basic accounting, or at a higher level. \r\n\r\nNo matter where we start, the goal is to get your company to the next level, ASAP."
+    }, {
+      "name" : "Azran Financial APC",
+      "addressCity" : "Calabasas",
+      "addressState" : "CA",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01rrudgqru_bvtdy1m",
+      "mktExtId" : "cd01rrudgqru_bvtdy1m",
+      "companyUrl" : "www.AzranFinancial.com",
+      "description" : "Azran Financial is a boutique Los Angeles Certified Public Accounting (CPA) firm providing Accounting, Audit, Tax & Advisory Services.\r\n\r\nWe are a full-service Los Angeles CPA firm providing: Accounting & Audit, Tax, Advisory, Forensic Accounting, Litigation Support, Business Valuation, Fraud Prevention & Detection, and Business Management services.\r\n\r\nOur experts include multi-credentialed professionals with certifications including Certified Public Accountant (CPA), Accredited in Business Valuation (ABV), Certified in Financial Forensics (CFF), Certified Management Accountant (CMA), Chartered Global Management Accountant (CGMA), & Certified Fraud Examiner (CFE).\r\n\r\nAzran Financial has two convenient locations in Southern California with Los Angeles CPA offices in Calabasas & Century City."
+    }, {
+      "name" : "Barnes, Blackwell, & Co. -",
+      "addressCity" : "Huntsville",
+      "addressState" : "AL",
+      "bdcCertified" : true,
+      "useSince" : "2010",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxpwrqtm5qju",
+      "mktExtId" : "cd01qazwsxpwrqtm5qju",
+      "companyUrl" : "http://www.bbcpas.net",
+      "description" : "At Barnes, Blackwell, & Company, PC we strive to merge the latest technologies with our belief of how business should be done the old fashioned way. Our goal is to provide our clients with a wide range of expertise and experience, combined with service that is second to none. We believe that ultimately, our success depends on your success.\r\n\r\nOur history is built upon a tradition of service, technical expertise, and innovative thinking to meet the needs of a rapidly changing world. The experience and academic credentials of our partners and staff provide our clients with the expertise of larger firms, while our commitment to superior customer service offers a personal, one-on-one approach.\r\nWe are members of the American Institute of Certified Public Accountants, AICPA Private Companies Practice Section and the Alabama Society of CPA's."
+    }, {
+      "name" : "Barton's Tax & Accounting Service",
+      "addressCity" : "CLAYTON",
+      "addressState" : "NC",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01uefztxdj_6pnc6dt",
+      "mktExtId" : "cd01uefztxdj_6pnc6dt",
+      "companyUrl" : "www.bartonstaxandaccounting.com",
+      "description" : "Barton's Tax & Accounting Service is a full service accounting firm dedicated to offering clients a menu of services that fits their budget. Our objective is to help our clients grow their business by letting them work on their business instead of in their business. We do that by becoming their accounting department. The menu of services we offer are bookkeeping, payroll, accounts payable, accounts receivable, and tax preparation just to name a few."
+    }, {
+      "name" : "BizCFO, Inc.",
+      "addressCity" : "Santa Monica",
+      "addressState" : "CA",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01wyhojqxt_fn0xip2",
+      "mktExtId" : "cd01wyhojqxt_fn0xip2",
+      "companyUrl" : "bizcfo.com",
+      "description" : "BizCFO was formed to provide superior accounting and finance support services to growth companies in the Southern California region.  We provide virtual accounting support via cloud-based scalable technology. \r\n\r\nAt BizCFO, we recognize the headwinds that growth companies encounter as they attempt to achieve their goals.  Part of that headwind is ensuring that you keep accurate and timely financial information pertinent to your company in order to attract future investment and buyers and be in compliance with regulatory requirements.  Our expert consultants have years of experience in both the public and private sectors and have worked with hundreds of growth companies, ensuring that your financial information is being prepared in accordance with standards generally accepted in the United States.\r\n\r\nWe are committed to using the latest technology to assist our clients.  We know that our clients are often on the cutting edge of developing technology, and accordingly, we believe we should be too. Contact us today for a complimentary meeting and consultation."
+    }, {
+      "name" : "Blue & Co., LLC (Aliign)",
+      "addressCity" : "Columbus",
+      "addressState" : "IN",
+      "bdcCertified" : true,
+      "useSince" : "2009",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxikdvjm14mx",
+      "mktExtId" : "cd01qazwsxikdvjm14mx",
+      "companyUrl" : "http://www.aliign.com",
+      "description" : "Aliign, LLC is an outsourced accounting and payroll service focused on serving vibrant small businesses. We integrate multiple financial services into a package which empowers clients with information that drives decisions. We utilize technology to simplify the lives of our clients while providing real-time business intelligence. We work closely with our clients to meet their business, tax, and planning needs. Aliign serves clients across Indiana, Ohio, and Kentucky. \r\n\r\nAliign is a subsidiary of Blue & Co., LLC, one of the leading regional CPA firms in the United States. Through Blue & Co., our clients have access to leading CPAÂ’s and advisors with a reputation for providing candid, accurate business advice that helps our clients succeed. Blue & Co. has eight offices in three states (IN, KY and OH), providing diverse services including auditing, business planning, financial controls, mergers and acquisitions, employee benefits and litigation support."
+    }, {
+      "name" : "Blumer & Associates, CPAs, PC",
+      "addressCity" : "Greenville",
+      "addressState" : "SC",
+      "bdcCertified" : true,
+      "useSince" : "2009",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxfdpslg335q",
+      "mktExtId" : "cd01qazwsxfdpslg335q",
+      "companyUrl" : "http://www.blumercpas.com",
+      "description" : "We exist to help creative customers enjoy their work and lives more deeply by managing the technical side of their business with effective technologies and provide them with business intelligence through challenging coaching and deeper education."
+    }, {
+      "name" : "Bookkeepers 2 Go, LLC  -",
+      "addressCity" : "Bridgewater",
+      "addressState" : "NJ",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxehcexb78wb",
+      "mktExtId" : "cd01qazwsxehcexb78wb",
+      "companyUrl" : "www.bookkeepers2go.com",
+      "description" : "Providing \"peace of mind\" solutions for our clients regarding all accounting compliance issues by recommending and executing compliant solutions to our clients accounting, bookkeeping, and tax filing need requirements.  Our Mission is to be proactive in audit security and penalty prevention"
+    }, {
+      "name" : "Bookkeeping Etc., Inc. -",
+      "addressCity" : "Gaithersburg",
+      "addressState" : "MD",
+      "bdcCertified" : true,
+      "useSince" : "2010",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxgpetsn5o8g",
+      "mktExtId" : "cd01qazwsxgpetsn5o8g",
+      "companyUrl" : "www.bookkeepingetcinc.com",
+      "description" : "We love Bill.com because of how much it frees the business ownerÂ’s time as well as the anytime, anywhere access they gain to their information. Our team at Bookkeeping Etc., Inc. is passionate about helping small and mid-sized businesses become more profitable.  We can help you decide whether Bill.com is the right product for your business.  We also can take care of your bookkeeping and payroll functions so you can get back to business faster.  We can streamline your accounting platform so you can save time and money on overhead.  And we offer expert QuickBooks consulting and training to improve your productivity.   Contact us via, email, phone, or website."
+    }, {
+      "name" : "Bordeaux & Bordeaux CPAs -",
+      "addressCity" : "Lake Wylie",
+      "addressState" : "SC",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxxqptdc72st",
+      "mktExtId" : "cd01qazwsxxqptdc72st",
+      "companyUrl" : "www..yourcpapartners.com",
+      "description" : "Proactive personalized advice for small business is owners is the focus of our firm. With our Calculated Moves package for businesses, we offer technology based services with personal support to help you grow your business to the level you dream of and spend your time doing the things that provide you the most value!  Call us today for your complimentary consultation to see how we can change your life."
+    }, {
+      "name" : "Bottom Line Accounting Solutions",
+      "addressCity" : "Willoughby Hills",
+      "addressState" : "OH",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01odyqnwms_8szliaq",
+      "mktExtId" : "cd01odyqnwms_8szliaq",
+      "companyUrl" : "www.BetterBottomLine.com",
+      "description" : "Provides a full suite of QuickBooks services, including: setup, training and troubleshooting. Fully certified reseller of QuickBooks Enterprise."
+    }, {
+      "name" : "Boyle CPA, PLLC",
+      "addressCity" : "Raleigh",
+      "addressState" : "NC",
+      "bdcCertified" : true,
+      "useSince" : "2012",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01hipqgulh_b0s8v2q",
+      "mktExtId" : "cd01hipqgulh_b0s8v2q",
+      "companyUrl" : "www.boyle-cpa.com",
+      "description" : "Boyle CPA provides outsourced accounting and consulting services to small and mid-sized businesses."
+    }, {
+      "name" : "Bright Bookkeeping -",
+      "addressCity" : "Glen Ellyn",
+      "addressState" : "IL",
+      "bdcCertified" : true,
+      "useSince" : "2011",
+      "logoUrl" : "https://app.bill.com/DirectoryLogoImage?mktExtId=cd01qazwsxmxfgbv6clt",
+      "mktExtId" : "cd01qazwsxmxfgbv6clt",
+      "companyUrl" : "www.bright-bookkeeping.com",
+      "description" : "SAVE TIME BY HIRING BRIGHT!  Stop working late nights and weekends trying to balance your books by using Bright.\r\n\r\nWe offer bookkeeping services, QuickBooks set up and training, and payroll for small business.  Are you too small to hire a full time bookkeeper, we can fit your schedule weekly, monthly or quarterly to accomodate you. \r\n\r\nOr if you have QuickBooks questions, please give me a call.  I can train you or your staff and get you on the right track."
+    }];
+var address_position = 0;
+
+var timeout = 600;
+
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(52.40, -3.61);
+    var myOptions = {
+      zoom: 8,
+      center: latlng,
+      mapTypeId: 'roadmap'
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    addMarker(address_position);
+}
+
+function addMarker(position)
+{
+    geocoder.geocode({'address': address['addressCity']+","+address['addressState']}, function(results, status)
+    {
+        var address1 = address['addressCity'] + "," + address['addressState'];
+        if (status == google.maps.GeocoderStatus.OK) {
+            places[address1] = results[0].geometry.location;
+
+            var marker = new google.maps.Marker({
+                position: places[address1],
+                map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+                if (!infowindow) {
+                    infowindow = new google.maps.InfoWindow();
+                }
+                infowindow.setContent(popup_content[address1]);
+                infowindow.open(map, marker);
+            });
+        }
+        else
+        {
+            if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT)
+            {
+                setTimeout(function() { addMarker(position); }, (timeout * 3));
+            }
+        }
+        address_position++;
+        if (address_position < address.length)
+        {
+            setTimeout(function() { addMarker(address_position); }, (timeout));
+        }
+    });
+}
+</script>
+</head>
+<body onload="initialize()">
+<div id="map_canvas" style="height: 80%; top:10px; border: 1px solid black;"></div>
+</body>
+</html>

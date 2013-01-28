@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>
+            A self-modifying Web page
+        </title>
+    </head>
+
+    <body>
+        <center>
+            <h1>
+                A self-modifying Web page
+            </h1>
+
+            <script language="JavaScript">
+                if(confirm("Do you want the larger graphics?")) {
+                    document.write("<br><img " 
+                    + "src='image1.jpg'></IMG>")
+                }
+                else {
+                    document.write("<br><img " +
+                    "src='image1small.jpg'></IMG>")
+                }
+            </script>
+
+        </center>
+
+    </body>
+
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.7.1.js'></script>
+   
+  </head>
+  <body>
+    <iframe id="frame" src=""></iframe>  
+     <script type="text/javascript">     
+      $(document).ready(function(){
+         // var inlineFrame = $("#frame")[0];          
+          //$.isWindow(inlineFrame); // returns false
+          //$.isWindow(window);      // returns true 
+
+           $("iframe").attr("src", "http://www.cnn.com");
+      });
+    </script>
+  </body>
+</html>

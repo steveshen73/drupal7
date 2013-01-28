@@ -1,0 +1,20 @@
+  function divAdvert_onMouseOver()
+    {
+        var divAdvert = document.getElementById("divAdvert");
+        divAdvert.className = "defaultStyle";
+       
+    }
+
+    function divAdvert_onMouseOut()
+    {
+        var divAdvert = document.getElementById("divAdvert");
+        divAdvert.className = "defaultStyle";
+       
+
+    }
+    window.onload = function(){
+
+      divAdvert_onMouseOver();
+      //divAdvert_onMouseOut();
+    
+    }

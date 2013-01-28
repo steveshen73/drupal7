@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title>Using a for loop</title>
+
+    <script language="javascript">
+
+      function showMessage() 
+      {
+        var loopIndex;
+        var total = 0;
+
+        for(loopIndex = 1; loopIndex <= 1000; loopIndex++) {
+          total += loopIndex;
+        }
+
+        document.getElementById('targetDiv').innerHTML = 
+          "The total of 1 to 1000 is " + total;
+      }
+    </script>
+
+  </head> 
+
+  <body onload="showMessage()">
+
+    <h1>Using a for loop</h1>
+
+    <div id="targetDiv">
+    </div>
+
+    </body>
+</html>

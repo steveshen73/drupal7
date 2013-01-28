@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+$(document).ready(function(){
+         
+	$.getJSON('http://localhost/map/accountant.json', function(data) {
+          var directories = data['response_data']['directories'];
+	    var address = [];
+	    var pop_content = [];
+	    $.each(directories, function(key, obj) {
+		address.push('<li id="addressCity-' + key + '">' + obj["addressCity"] + ',' + obj["addressState"] + '</li>');
+		pop_content.push('<li id="name-' + key + '">' + obj["name"] + '</li>');
+	    });
+            document.write(pop_content);
+	});
+ });
+</script>
+
+</body>
+</html> 

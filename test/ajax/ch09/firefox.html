@@ -1,0 +1,78 @@
+<html>
+  <head>
+
+    <title>Handling XML in Firefox</title>
+
+    <script language = "javascript">
+
+      function getData()
+      {
+        var mozilla = false;
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+          mozilla = true;
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new 
+            ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+          XMLHttpRequestObject.open("GET", "event.xml", true); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+            var xmlDocument = XMLHttpRequestObject.responseXML;
+
+            displayThirdGuest(xmlDocument);
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function displayThirdGuest(xmldoc)
+      {
+        var eventsNode, eventNode, peopleNode; 
+        var personNode, firstNameNode, lastNameNode, displayText;
+ 
+        eventsNode = xmldoc.documentElement;
+        eventNode = eventsNode.firstChild.nextSibling;
+        peopleNode = eventNode.lastChild.previousSibling;
+        personNode = peopleNode.firstChild.nextSibling
+          .nextSibling.nextSibling.nextSibling.nextSibling;
+        firstNameNode = personNode.firstChild.nextSibling;
+        lastNameNode = firstNameNode.nextSibling.nextSibling;
+
+        displayText = "The third guest is: " + 
+          firstNameNode.firstChild.nodeValue + ' ' 
+          + lastNameNode.firstChild.nodeValue;
+
+        var target = document.getElementById("targetDiv");
+          target.innerHTML=displayText;
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <h1>Handling XML in Firefox</h1>
+
+    <form>
+      <input type = "button" value = "Get the third guest" 
+        onclick = "getData()"> 
+    </form>
+
+    <div id="targetDiv" width =100 height=100>
+      The result will appear here.
+    </div>
+
+  </body>
+
+</html>

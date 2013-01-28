@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Google Maps Multiple Markers</title> 
+  <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
+</head> 
+<body>
+  <div id="map" style="width: 900px; height: 600px;"></div>
+
+  <script type="text/javascript">
+  /*--  
+  var locations = [
+      ['San Jose, CA', 37.3393857,-121.8949555, 4],
+      ['Los Angeles, CA', 34.0522342,-118.2436849, 5],
+      ['new york, NY', 40.7143528,-74.0059731, 3],
+      ['Scotia, NY', 42.8264652,-73.9642915, 2],
+      ['Evanston,IL', 42.0411414,-87.6900587, 1],
+      ['Williston, FL', 29.38747,-82.4467705, 6],
+      ['Perkasie, PA', 40.372048,-75.292676, 7],
+      ['Yorba Linda,CA', 33.8886259,-117.8131125, 8],
+      ['Richmond,IN', 39.8289369,-84.8902382, 9],
+      ['McLean,VA', 38.9338676,-77.1772604, 10],
+      ['Telluride,CO', 37.9374939,-107.8122852, 11],
+      ['Calabasas,CA', 34.1383333,-118.6608333, 12],
+      ['Huntsville,AL', 34.7303688,-86.5861037, 13],
+      ['CLAYTON,NC', 35.650711,-78.4563914, 14]
+    ];
+   --*/
+
+   var array_obj = {
+	  "response_status" : 0,
+	  "response_message" : "Success",
+	  "response_data" : {
+	    "total" : 963,
+	    "directories" : 
+            [ 
+              { "address" : "San Jose, CA", "lat" : "37.3393857","Lng" : "-121.8949555", "id" : 4},
+	      { "address" : "Los Angeles, CA", "lat" : "34.0522342","lng" : "-118.2436849", "id" : 5},
+	      { "address" : "new york, NY", "lat" : "40.7143528","lng" : "-74.0059731", "id" : 3},
+	      { "address" : "Scotia, NY" , "lat" : "42.8264652","lng" : "-73.9642915", "id" : 2},
+	      { "address" : "Evanston,IL", "lat" : "42.0411414","lng" : "-87.6900587", "id" : 1},
+	      { "address" : "Williston, FL", "lat" : "29.38747", "lng" : "-82.4467705", "id" : 6}, 
+	      { "address" : "Perkasie, PA", "lat" : "40.372048", "lng" : "-75.292676", "id" : 7},
+	      { "address" : "Yorba Linda,CA", "lat" : "33.8886259", "lng" : "-117.8131125", "id" : 8},
+	      { "address" : "Richmond,IN", "lat" : "39.8289369","lng" : "-84.8902382", "id" : 9},
+	      { "address" : "McLean,VA", "lat" : "38.9338676","lng" : "-77.1772604", "id" : 10},
+	      { "address" : "Telluride,CO", "lat" : "37.9374939","lng" : "-107.8122852", "id" : 11},
+	      { "address" : "Calabasas,CA", "lat" : "34.1383333","lng" : "-118.6608333", "id" : 12},
+	      { "address" : "Huntsville,AL", "lat" : "34.7303688","lng" : "-86.5861037", "id" : 13},
+	      { "address" : "CLAYTON,NC", "lat" : "35.650711","lng" : "-78.4563914", "id" : 14}
+	 ]
+  }
+}
+
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 4,
+      center: new google.maps.LatLng(39.114053,-94.6274636),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+    
+    var locations = array_obj.response_data.directories;
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i].name);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+</body>
+</html>

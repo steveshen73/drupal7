@@ -1,0 +1,54 @@
+<html> 
+  <head> 
+    <title>Using public and private keys</title> 
+
+    <script src="webtoolkit.md5.js"></script>
+
+    <script language = "javascript">
+      var md5String = MD5("test");
+      var XMLHttpRequestObject = false; 
+
+      if (window.XMLHttpRequest) {
+        XMLHttpRequestObject = new XMLHttpRequest();
+      } else if (window.ActiveXObject) {
+        XMLHttpRequestObject = new 
+          ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      function getData(dataSource, divID) 
+      { 
+        if(XMLHttpRequestObject) {
+          var obj = document.getElementById(divID); 
+          XMLHttpRequestObject.open("POST", dataSource); 
+          XMLHttpRequestObject.setRequestHeader('Content-Type', 
+            'application/x-www-form-urlencoded'); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                obj.innerHTML = XMLHttpRequestObject.responseText; 
+            } 
+          } 
+
+          XMLHttpRequestObject.send("data=" + md5String); 
+        }
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Using public and private keys</H1>
+
+    <form>
+      <input type = "button" value = "Check encrypted text" 
+        onclick = "getData('md5.jsp', 'targetDiv')"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched message will appear here.</p> 
+    </div> 
+
+  </body> 
+</html>

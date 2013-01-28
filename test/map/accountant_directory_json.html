@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+	<title></title>
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="robots" content="all" />
+	<base href="http://localhost" />
+    
+   <!-- <link href="style.css" rel="stylesheet" type="text/css" />-->
+	<link rel="icon" type="image/png" href="favicon.png"><!-- Major Browsers -->
+<!--[if IE]><link rel="SHORTCUT ICON" href="favicon.ico"/><![endif]--><!-- Internet Explorer-->
+   
+  <!--http://localhost/map/accountant.json-->
+    
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" type="text/css" href="css/ie/ie.css" />
+    <![endif]-->
+	
+	
+<meta http-equiv="cache-control" content="no-cache" />
+
+<script src="http://localhost/map/jquery-1.6.2.min.js"></script>
+<!--<script src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyAxEa8NI8pnRv8SSRSejuFl3M7oL1WWIds&sensor=false">//version 3-->
+<script src="http://maps.google.com/maps?file=api&v=2&key=AIzaSyAxEa8NI8pnRv8SSRSejuFl3M7oL1WWIds&sensor=false">
+
+
+type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+
+    var lat=37.4219720;
+    var lng= -122.0841430;
+    var zoom=14;
+    var map = null;
+    var geocoder = null;
+    var bounds = null;
+
+
+    function initialize() {
+        
+        var myCenter = new google.maps.LatLng(39.114053,-94.6274636);
+	var mapProp = {
+	    center:myCenter,
+	    zoom:4,
+          
+            
+            mapTypeControl:true,
+            mapTypeControlOptions: {
+                                style:google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                                position:google.maps.ControlPosition.TOP_RIGHT //default position for drop down menu
+        
+                              },
+	    mapTypeId:google.maps.MapTypeId.ROADMAP
+	  };
+
+            map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+            
+            var geocoder = new google.maps.Geocoder();
+
+            /*--
+            geocoder.geocode({ 'address': address }, function (results, status) {
+		    if (status == google.maps.GeocoderStatus.OK) {      
+			var marker = new google.maps.Marker({
+			    position: results[0].geometry.location
+			});
+			marker.setMap(map);
+		    }
+		}        
+            --*/
+
+            map.hideControls();
+            map.setMapType(G_PHYSICAL_MAP);
+            google.maps.event.addDomListener(map, "mouseover", function(){map.showControls();});
+            google.maps.event.addDomListener(map, "mouseout", function(){map.hideControls();});
+            map.addControl(new google.maps.MapTypeControlStyle());
+
+            //geocoder = new google.maps.Geocoder();
+
+      /*--
+        if (GBrowserIsCompatible()) {
+            map = new GMap2(document.getElementById("map"));
+            bounds = new GLatLngBounds;
+            map.addControl(new GLargeMapControl());
+            var MapTypes = map.getMapTypes();
+            MapTypes[0].getName= function() { return "Map";}
+            MapTypes[1].getName = function() { return "Satellite";}
+            MapTypes[2].getName = function() { return "Hybrid";}
+            map.hideControls();
+            map.setMapType(G_PHYSICAL_MAP);
+            GEvent.addListener(map, "mouseover", function(){map.showControls();});
+            GEvent.addListener(map, "mouseout", function(){map.hideControls();});
+            map.addControl(new GMapTypeControl());
+            //map.setCenter(new GLatLng(lat, lng), zoom);
+            geocoder = new GClientGeocoder();
+            //geocoder = new google.maps.Geocoder(); //version3
+        }
+      --*/
+    }
+
+      function getAddress(){
+	$(document).ready(function(){
+          	
+          $.getJSON('http://localhost/map/accountant.json', function(jsondata){
+     
+          var directories = jsondata.response_data.directories;
+          $.each(directories,function(i, item) {
+
+             address1 = directories[i].addressCity + "," + directories[i].addressState + "USA" + "</br>";
+             address2 = directories[i].addressCity + "," + directories[i].addressState + "</br>";
+             name = directories[i].name + "</br>";
+             mktExtId = directories[i].mktExtId;
+
+             //document.write(address1 + address2 + name + mktExtId + "</br>");
+             showAddress(address1,address2,name,mktExtId);
+
+          });
+
+      });
+     })
+    }
+
+    function showAddress(address1,address2,name,mktExtId) {
+        if (geocoder) {
+             //google map api v3
+             geocoder.geocode(address1,function(point) {
+                if (point) {
+                    bounds.extend(point);
+                    map.setCenter(bounds.getCenter(), map.getBoundsZoomLevel(bounds));
+                    var billIcon = new GIcon(G_DEFAULT_ICON);
+                    billIcon.image = "images/blank.png";
+                    // Set up our GMarkerOptions object
+                    markerOptions = { icon:billIcon };
+				
+                
+	            var marker = new google.maps.Marker(point, markerOptions);
+                    //var marker = new GMarker(point, markerOptions);
+                    map.addOverlay(marker);
+		
+                    google.maps.event.addListener(marker, "mouseover", function() {
+                        marker.openInfoWindowHtml('<b>'+name+'</b><br />'+address2);
+                    });
+		    
+                  <!--
+                    GEvent.addListener(marker, "mouseover", function() {
+                        marker.openInfoWindowHtml('<b>'+name+'</b><br />'+address2);
+                    });
+                  --> 
+    
+                    google.maps.event.addListener(marker, "mouseout", function() {
+                        marker.closeInfoWindow();
+                    });
+                   
+                    <!--
+                    GEvent.addListener(marker, "mouseout", function() {
+                        marker.closeInfoWindow();
+                    });
+                    -->
+              
+                    google.maps.event.addListener(marker, "click",  function() {
+                        window.location.href=logoUrl; 
+                    });
+          
+                   <!--
+                    GEvent.addListener(marker, "click",  function() {
+                        window.location.href=logoUrl; 
+                    });
+                   -->
+                }
+            });
+		
+
+        }
+    }
+
+
+  
+
+</script>
+
+</head>
+<body>
+   
+<div id="map" style="float:left;width: 988px; height: 600px; background: url(images/loading.gif); background-repeat: no-repeat; background-position: center;border: 1px solid #fff; overflow: hidden;margin-bottom:10px"></div>
+
+<script type="text/javascript">
+             this.onload = function load() {
+             initialize();
+             getAddress();
+            }
+ </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Returning values from functions</title>
+
+    <script language="javascript">
+      function showMessage ()
+      {
+        document.getElementById("targetDiv").innerHTML = "5 + 3 = " + adder(5, 3)
+      }
+
+      function adder(operand1, operand2)
+      {
+        return operand1 + operand2
+      }
+    </script>
+  </head>
+
+  <body onload="showMessage()">
+    <h1>Returning values from functions</h1>
+
+    <div id="targetDiv">
+    </div>
+
+  </body>
+</html>

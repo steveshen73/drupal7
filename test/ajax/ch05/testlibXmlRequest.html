@@ -1,0 +1,35 @@
+<html> 
+  <head> 
+    <title>Using the libXmlRequest Ajax framework</title> 
+
+    <script src = "libXmlRequest.js"></script>
+
+    <script language = "javascript">
+
+      function callback(a, b) 
+      { 
+        var xmlData = b.xdom.getElementsByTagName("text");
+
+        var div = document.getElementById('targetDiv');
+
+        div.innerHTML = xmlData[0].firstChild.data;
+
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Using the libXmlRequest Ajax framework</H1>
+
+    <form>
+      <input type = "button" value = "Get the message" 
+        onclick = "org.cote.js.xml.getXml('message.xml', callback, 1)"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

@@ -1,0 +1,32 @@
+<?php
+$string = <<<XML
+<?xml version='1.0'?>
+<document>
+    <cmd>login</cmd>
+    <login>Richard</login>
+</document>
+XML;
+                                                                       
+                                          
+$xml = simplexml_load_string($string);
+echo "<pre>";
+print_r($xml);
+echo "</pre>";
+echo "</br></br>";
+
+
+$login = $xml->login;
+
+echo "<pre>";
+//print_r($login); //print out $login as an array
+echo $login; //print login as a string automatically
+echo "</pre>";
+
+
+$login = (string) $xml->login;
+//print_r($login); //print $login as a string
+echo $login;       //print login as a string
+
+
+?> 
+

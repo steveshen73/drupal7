@@ -1,0 +1,562 @@
+
+$(document).ready(function(){
+
+    //alert('in bill-api.js document.ready') ; 
+    collapse_all_topics() ;
+
+    expand_all_minitoc() ; 
+
+    /*  Set the handlers for links  */
+
+    $(".XRef").click(
+	function() { expand_all_content() ; }
+    );
+
+    $(".toc_topics span.expand_all").click(
+	function() { expand_all_topics() ; }
+    );
+
+    $(".toc_topics span.expand_some").click(
+	function() { expand_some_topics() ; }
+    );
+
+    $(".toc_topics span.collapse_all").click(
+	function() { collapse_all_topics() ; }
+    );
+
+    $('.api_minitoc_indicator').click(
+	function(event) { 
+           //alert(event.target.id); 
+           process_minitoc_indicator_click(event.target) ;
+        }
+    );
+        
+    $('.toc_main_topic > .api_toc_indicator').click(
+	function(event) { 
+           //alert(event.target.id); 
+           process_toc_main_topic_indicator_click(event.target) ;
+        }
+    );
+        
+    $('.toc_sub_topic > .api_toc_indicator').click(
+	function(event) { 
+           //alert(event.target.id); 
+           process_toc_sub_topic_indicator_click(event.target) ;
+        }
+    );
+        
+    $(".Heading1TOC span.Index").click(
+	function() { process_toc_main_topic_click(event.target) ; }
+    );
+
+    $(".Heading2TOC span.Index").click(
+	function() { process_toc_sub_topic_click(event.target) ; }
+    );
+
+    $(".H3TOC span.Index").click(
+	function() { process_toc_sub_sub_topic_click(event.target) ; }
+    );
+
+});
+
+
+
+/*
+*/
+function expand_all_topics() { 
+    //alert('in expand_all_topics') ; 
+    $('.toc_main_topic').removeClass('collapsed') ; 
+    $('.toc_main_topic').addClass('expanded') ; 
+    $('.toc_sub_topic').removeClass('hiding') ; 
+    $('.toc_sub_topic').addClass('showing') ; 
+    $('.toc_sub_sub_topic').removeClass('hiding') ; 
+    $('.toc_sub_sub_topic').addClass('showing') ; 
+    $('span.api_toc_indicator').removeClass('api_toc_indicator_collapsed') ; 
+    $('span.api_toc_indicator').addClass('api_toc_indicator_expanded') ; 
+}
+
+/*
+*/
+function expand_some_topics() { 
+    //alert('in expand_some_topics') ; 
+    $('div.toc_main_topic').removeClass('collapsed') ; 
+    $('div.toc_main_topic').addClass('expanded') ; 
+    $('div.toc_sub_topic').removeClass('hiding') ; 
+    $('div.toc_sub_topic').addClass('showing') ; 
+    $('div.toc_sub_sub_topic').removeClass('showing') ; 
+    $('div.toc_sub_sub_topic').addClass('hiding') ; 
+    $('span.api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+    $('span.api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+    $('.toc_main_topic > span.api_toc_indicator').removeClass('api_toc_indicator_collapsed') ; 
+    $('.toc_main_topic > span.api_toc_indicator').addClass('api_toc_indicator_expanded') ; 
+}
+
+
+/*
+*/
+function expand_all_minitoc() { 
+    //alert('in expand_all_minitoc') ; 
+    $('p.MiniTOC').removeClass('hiding') ; 
+    $('p.MiniTOC').addClass('showing') ; 
+    $('span.api_minitoc_indicator').html('hide') ;  
+    $('span.api_minitoc_indicator').removeClass('indicator_collapsed') ; 
+    $('span.api_minitoc_indicator').addClass('indicator_expanded') ; 
+}
+
+/*
+*/
+function collapse_all_topics() { 
+    //alert('in collapse_all_topics') ; 
+    $('div.toc_main_topic').removeClass('expanded') ; 
+    $('div.toc_main_topic').addClass('collapsed') ; 
+    $('div.toc_sub_topic').removeClass('showing') ; 
+    $('div.toc_sub_topic').addClass('hiding') ; 
+    $('div.toc_sub_sub_topic').removeClass('showing') ; 
+    $('div.toc_sub_sub_topic').addClass('hiding') ; 
+    $('.toc_main_topic > span.api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+    $('.toc_main_topic > span.api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+    $('.toc_sub_topic > span.api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+    $('.toc_sub_topic > span.api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+}
+
+
+/*
+*/
+function expand_all_content() { 
+    //alert('in expand_all_content') ; 
+    $('.main_topic').removeClass('hiding') ; 
+    $('.main_topic').addClass('showing') ; 
+    $('.sub_topic').removeClass('hiding') ; 
+    $('.sub_topic').addClass('showing') ; 
+    $('.sub_sub_topic').removeClass('hiding') ; 
+    $('.sub_sub_topic').addClass('showing') ; 
+}
+
+
+/*
+    Respond to a click to toggle a Mini TOC
+
+    get the ID of the icon (span)
+    determine the ID of the corresponding Mini TOC section
+
+    Either expand or collapse the Mini TOC
+
+*/
+function process_minitoc_indicator_click(this_span) { 
+
+    //alert('in process_minitoc_indicator_click with ' + this_span.id) ; 
+
+    var this_span_id = this_span.id ; 
+    var minitoc_id = this_span.id ; 
+
+    minitoc_id = minitoc_id.replace('bullet-','pgfId-') ; 
+
+    if ( $(this_span).hasClass('indicator_collapsed') ) {
+
+	//alert('$(this_span) is to be expanded ') ; 
+
+	$(this_span).removeClass('indicator_collapsed') ; 
+	$(this_span).addClass('indicator_expanded') ; 
+        $(this_span).html('hide') ;  
+        //alert('just changed icon of miniTOC to expanded.') ; 
+
+	$('#' + minitoc_id).removeClass('hiding') ; 
+	$('#' + minitoc_id).addClass('showing') ; 
+        //alert('just expanded this mini TOC') ; 
+
+    } else if ( $(this_span).hasClass('indicator_expanded') ) {
+
+	//alert('$(this_span) is to be collapsed ') ; 
+
+	$(this_span).removeClass('indicator_expanded') ; 
+	$(this_span).addClass('indicator_collapsed') ; 
+        $(this_span).html('show topics') ;  
+        //alert('just changed icon of miniTOC to collapsed.') ; 
+
+	$('#' + minitoc_id).removeClass('showing') ; 
+	$('#' + minitoc_id).addClass('hiding') ; 
+        //alert('just collapsed this mini TOC') ; 
+
+    } else { 
+
+	alert('$(this_span) had no recognizable classes') ; 
+
+    }
+}
+
+
+/*
+    Respond to a click to toggle a TOC main topic
+
+    get the ID of the icon (span)
+    determine the ID of the corresponding TOC section and content section
+
+    If it is an expansion: 
+
+      Collapse all other main TOC sections
+      Expand this main TOC section (show its sub sections)
+
+      Collapse all content sections 
+      Expand the requested content section
+
+*/
+function process_toc_main_topic_indicator_click(this_span) { 
+
+    //alert('in process_toc_main_topic_indicator_click with ' + this_span.id) ; 
+
+    var this_span_id = this_span.id ; 
+    var main_toc_id = this_span.id ; 
+    var content_id = this_span.id ; 
+
+    main_toc_id = main_toc_id.replace('bullet-','tocId-') ; 
+    content_id = content_id.replace('bullet-','pgfId-') ; 
+
+    if ( $(this_span).hasClass('api_toc_indicator_collapsed') ) {
+
+	//alert('$(this_span) is to be expanded ') ; 
+
+	$('.toc_main_topic > span.api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+	$('.toc_main_topic > span.api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+        //alert('just changed icon of all main TOC sections to collapsed.') ; 
+
+	$(this_span).removeClass('api_toc_indicator_collapsed') ; 
+	$(this_span).addClass('api_toc_indicator_expanded') ; 
+        //alert('just changed icon of main TOC section to expanded.') ; 
+
+	$('.toc_sub_topic').removeClass('showing') ; 
+	$('.toc_sub_topic').addClass('hiding') ; 
+        //alert('just collapsed all TOC sub topics') ; 
+
+	$('#' + main_toc_id + ' .toc_sub_topic').removeClass('hiding') ; 
+	$('#' + main_toc_id + ' .toc_sub_topic').addClass('showing') ; 
+        //alert('just expanded this main TOC section') ; 
+
+	$('.main_topic').removeClass('showing') ; 
+	$('.main_topic').addClass('hiding') ; 
+        //alert('just collapsed all main content sections') ; 
+
+	$('#' + content_id).removeClass('hiding') ; 
+	$('#' + content_id).addClass('showing') ; 
+        //alert('just expanded the selected main conent section ' + content_id) ; 
+
+	$('#' + content_id + ' .sub_topic').removeClass('hiding') ; 
+	$('#' + content_id + ' .sub_topic').addClass('showing') ; 
+        //alert('just expanded the selected main content sub sections') ; 
+
+    } else if ( $(this_span).hasClass('api_toc_indicator_expanded') ) {
+
+	//alert('$(this_span) is to be collapsed ') ; 
+
+	$(this_span).removeClass('api_toc_indicator_expanded') ; 
+	$(this_span).addClass('api_toc_indicator_collapsed') ; 
+        //alert('just changed the indicatyor to collapsed') ; 
+
+	$('#' + main_toc_id + ' .toc_sub_topic').removeClass('showing') ; 
+	$('#' + main_toc_id + ' .toc_sub_topic').addClass('hiding') ; 
+        //alert('just collapsed this main TOC section') ; 
+
+	//$('#' + content_id + ' .sub_topic').removeClass('showing') ; 
+	//$('#' + content_id + ' .sub_topic').addClass('hiding') ; 
+        //alert('just collapsed the selected main conent sub sections') ; 
+
+    } else { 
+
+	alert('$(this_span) had no recognizable classes') ; 
+
+    }
+}
+
+
+/*
+    Respond to a click to toggle a TOC sub topic
+
+    get the ID of the icon (span)
+    determine the ID of the corresponding TOC section and content section
+
+    If it is an expansion: 
+
+      Collapse all other main TOC sections
+      Expand this main TOC section (show its sub sections)
+
+      Collapse all content sections 
+      Expand the requested content section
+
+*/
+function process_toc_sub_topic_indicator_click(this_span) { 
+
+    //alert('in process_toc_sub_topic_indiator_click with ' + this_span.id) ; 
+
+    var this_span_id = this_span.id ; 
+    var sub_toc_id = this_span.id ; 
+    var content_id = this_span.id ; 
+
+    var parent_main_toc = $(this_span).closest('.toc_main_topic') ; 
+    var main_toc_id = $(parent_main_toc).attr('id') ; 
+    //alert('main_toc_id is ' + main_toc_id) ; 
+
+    sub_toc_id = sub_toc_id.replace('bullet-','tocId-') ; 
+    content_id = content_id.replace('bullet-','pgfId-') ; 
+    main_content_id = main_toc_id.replace('tocId-','pgfId-') ; 
+
+    if ( $(this_span).hasClass('api_toc_indicator_collapsed') ) {
+
+	//alert('$(this_span) is to be expanded ') ; 
+
+	$('.toc_sub_topic .api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+	$('.toc_sub_topic .api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+        //alert('just changed icon of all sub TOC sections to collapsed.') ; 
+
+	$(this_span).removeClass('api_toc_indicator_collapsed') ; 
+	$(this_span).addClass('api_toc_indicator_expanded') ; 
+        //alert('just changed icon of sub TOC section to expanded.') ; 
+
+	$('.toc_sub_sub_topic').removeClass('showing') ; 
+	$('.toc_sub_sub_topic').addClass('hiding') ; 
+        //alert('just collapsed all sub TOC sections') ; 
+
+	$('#' + sub_toc_id + ' .toc_sub_sub_topic').removeClass('hiding') ; 
+	$('#' + sub_toc_id + ' .toc_sub_sub_topic').addClass('showing') ; 
+        //alert('just expanded this sub TOC section') ; 
+
+        // Hide all main content sections
+	$('.main_topic').removeClass('showing') ; 
+	$('.main_topic').addClass('hiding') ; 
+        //alert('just hid all main conent sections') ; 
+
+        // Expand this main content section
+	$('#' + main_content_id).removeClass('hiding') ; 
+	$('#' + main_content_id).addClass('showing') ; 
+        //alert('just expanded the selected main conent section ' + main_content_id) ; 
+
+        // Hide all sub content sections
+	$('.sub_topic').removeClass('showing') ; 
+	$('.sub_topic').addClass('hiding') ; 
+        //alert('just hid all sub conent sections') ; 
+
+        // Expand this sub content section
+	$('#' + content_id).removeClass('hiding') ; 
+	$('#' + content_id).addClass('showing') ; 
+        //alert('just expanded the selected sub content section ' + content_id) ; 
+
+
+
+/*
+	$('#' + content_id + ' .sub_topic').removeClass('hiding') ; 
+	$('#' + content_id + ' .sub_topic').addClass('showing') ; 
+        //alert('just expanded the selected main content sub sections') ; 
+*/
+    } else if ( $(this_span).hasClass('api_toc_indicator_expanded') ) {
+
+	//alert('$(this_span) is to be collapsed ') ; 
+
+	$(this_span).removeClass('api_toc_indicator_expanded') ; 
+	$(this_span).addClass('api_toc_indicator_collapsed') ; 
+
+	$('#' + sub_toc_id + ' .toc_sub_sub_topic').removeClass('showing') ; 
+	$('#' + sub_toc_id + ' .toc_sub_sub_topic').addClass('hiding') ; 
+        //alert('just collapsed this sub TOC section') ; 
+/*
+	$('#' + content_id + ' .sub_topic').removeClass('showing') ; 
+	$('#' + content_id + ' .sub_topic').addClass('hiding') ; 
+        //alert('just collapsed the selected main conent sub sections') ; 
+
+	*/
+    } else { 
+
+	alert('$(this_span) had no recognizable classes') ; 
+
+    }
+}
+
+
+
+/*
+    Respond to a click on a main topic name in the TOC 
+
+    get the ID of the span
+    determine the ID of the corresponding TOC section and content section
+
+      Collapse all other main TOC sections
+      Expand this main TOC section (show its sub sections)
+
+      Collapse all content sections 
+      Expand the requested content section
+
+*/
+function process_toc_main_topic_click(this_name_link) { 
+
+    //alert('in process_toc_main_topic_click with ' + this_span.id) ; 
+
+    var span_id = this_name_link.id ; 
+    var main_toc_id = this_name_link.id ; 
+    var content_id = this_name_link.id ; 
+
+    main_toc_id = main_toc_id.replace('linkId-','tocId-') ; 
+    content_id = content_id.replace('linkId-','pgfId-') ; 
+    span_id = span_id.replace('linkId-','bullet-') ;
+
+    $('.toc_main_topic > span.api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+    $('.toc_main_topic > span.api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+    //alert('just changed icon of all main TOC sections to collapsed.') ; 
+    
+    $('#' + span_id).removeClass('api_toc_indicator_collapsed') ; 
+    $('#' + span_id).addClass('api_toc_indicator_expanded') ; 
+    //alert('just changed icon of main TOC section to expanded.') ; 
+
+    $('.toc_sub_topic').removeClass('showing') ; 
+    $('.toc_sub_topic').addClass('hiding') ; 
+    //alert('just collapsed all TOC sub topics') ; 
+
+    //alert('main_toc_id is ' + main_toc_id) ; 
+    $('#' + main_toc_id + ' .toc_sub_topic').removeClass('hiding') ; 
+    $('#' + main_toc_id + ' .toc_sub_topic').addClass('showing') ; 
+    //alert('just unhid this main TOC section') ; 
+    //alert('just showed this main TOC section') ; 
+
+    $('.main_topic').removeClass('showing') ; 
+    $('.main_topic').addClass('hiding') ; 
+    //alert('just collapsed all main content sections') ; 
+
+    $('#' + content_id).removeClass('hiding') ; 
+    $('#' + content_id).addClass('showing') ; 
+    //alert('just expanded the selected main conent section ' + content_id) ; 
+    
+    $('#' + content_id + ' .sub_topic').removeClass('hiding') ; 
+    $('#' + content_id + ' .sub_topic').addClass('showing') ; 
+    //alert('just expanded the selected main content sub sections') ; 
+    
+}
+
+
+/*
+    Respond to a click on a name in a TOC sub topic
+
+    get the ID of the name
+    determine the ID of the corresponding TOC section, content section
+
+      Collapse all other main TOC sections
+      Expand this main TOC section (show its sub sections)
+
+      Collapse all content sections 
+      Expand the requested content section
+
+*/
+function process_toc_sub_topic_click(this_name_link) { 
+
+    //alert('in process_toc_sub_topic_click with ' + this_name_link.id) ; 
+
+    var span_id = this_name_link.id ; 
+    var sub_toc_id = this_name_link.id ; 
+    var content_id = this_name_link.id ; 
+
+    sub_toc_id = sub_toc_id.replace('linkId-','tocId-') ; 
+    content_id = content_id.replace('linkId-','pgfId-') ; 
+    span_id = span_id.replace('linkId-','bullet-') ;
+
+    var parent_main_toc = $(this_name_link).closest('.toc_main_topic') ; 
+    var main_toc_id = $(parent_main_toc).attr('id') ; 
+    //alert('main_toc_id is ' + main_toc_id) ; 
+
+    sub_toc_id = sub_toc_id.replace('bullet-','tocId-') ; 
+    content_id = content_id.replace('bullet-','pgfId-') ; 
+    main_content_id = main_toc_id.replace('tocId-','pgfId-') ; 
+
+    //alert('$(this_span) is to be expanded ') ; 
+    
+    $('.toc_sub_topic .api_toc_indicator').removeClass('api_toc_indicator_expanded') ; 
+    $('.toc_sub_topic .api_toc_indicator').addClass('api_toc_indicator_collapsed') ; 
+    //alert('just changed icon of all sub TOC sections to collapsed.') ; 
+    
+    $(span_id).removeClass('api_toc_indicator_collapsed') ; 
+    $(span_id).addClass('api_toc_indicator_expanded') ; 
+    //alert('just changed icon of sub TOC section to expanded.') ; 
+    
+    $('.toc_sub_sub_topic').removeClass('showing') ; 
+    $('.toc_sub_sub_topic').addClass('hiding') ; 
+    //alert('just collapsed all sub TOC sections') ; 
+    
+    $('#' + sub_toc_id + ' .toc_sub_sub_topic').removeClass('hiding') ; 
+    $('#' + sub_toc_id + ' .toc_sub_sub_topic').addClass('showing') ; 
+    //alert('just expanded this sub TOC section') ; 
+    
+    // Hide all main content sections
+    $('.main_topic').removeClass('showing') ; 
+    $('.main_topic').addClass('hiding') ; 
+    //alert('just hid all main conent sections') ; 
+    
+    // Expand this main content section
+    $('#' + main_content_id).removeClass('hiding') ; 
+    $('#' + main_content_id).addClass('showing') ; 
+    //alert('just expanded the selected main conent section ' + main_content_id) ; 
+    
+    // Hide all sub content sections
+    $('.sub_topic').removeClass('showing') ; 
+    $('.sub_topic').addClass('hiding') ; 
+    //alert('just hid all sub conent sections') ; 
+    
+    // Expand this sub content section
+    $('#' + content_id).removeClass('hiding') ; 
+    $('#' + content_id).addClass('showing') ; 
+    //alert('just expanded the selected sub content section ' + content_id) ; 
+}
+
+/*
+    Respond to a click on a name in a TOC sub sub topic
+
+    get the ID of the name
+    determine the ID of the corresponding TOC section, content section
+
+      Collapse all other H3TOC sections
+      Expand this H3TOC section
+
+      Collapse all content sections 
+      Expand the requested content section
+
+*/
+function process_toc_sub_sub_topic_click(this_name_link) { 
+
+    //alert('in process_toc_sub_sub_topic_click with ' + this_name_link.id) ; 
+
+    var span_id = this_name_link.id ; 
+
+
+    var content_id = this_name_link.id ; 
+
+    $('p.H3TOC span').removeClass('api_toc_h3_expanded') ; 
+    $('p.H3TOC span').addClass('api_toc_h3_collapsed') ; 
+    //alert('just collapsed all H3s.') ; 
+
+    $('#' + span_id).removeClass('api_toc_h3_collapsed') ; 
+    $('#' + span_id).addClass('api_toc_h3_expanded') ; 
+    //alert('just expanded this H3 span id ' + span_id + ' which is ' + $(span_id)) ;  
+
+    
+    //var parent_sub_topic = $('#' + content_id).closest('.sub_topic') ; 
+    var parent_sub_topic = $('#' + content_id).closest('*') ; 
+    //alert('parent_sub_topic is ' + parent_sub_topic) ; 
+
+    //$('#' + content_id).closest('.sub_topic').each(function() {
+    $('#' + content_id).each(function() {
+	$($(this).attr('class').split(' ')).each(function() { 
+            if (this !== '') {
+		//alert('Content object has class: ' + this) ; 
+            }    
+	});
+    });
+    
+    jQuery.each($('#' + content_id).closest('.sub_topic'), function(name, value) {
+	//alert(name + ": " + value);
+    });
+    
+
+    var sub_topic_id = $(parent_sub_topic).attr('id') ; 
+    //alert('sub_topic_id is ' + sub_topic_id) ; 
+
+    //$('#' + sub_topic_id + ' .sub_sub_topic').removeClass('showing') ; 
+    //$('#' + sub_topic_id + ' .sub_sub_topic').addClass('hiding') ; 
+    //alert('just collapsed these sub sub topics') ; 
+
+    //$('#' + content_id).removeClass('hiding') ; 
+    //$('#' + content_id).addClass('showing') ; 
+    //alert('just expanded this sub sub topic') ; 
+}

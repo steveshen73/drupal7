@@ -1,0 +1,41 @@
+<html>
+  <head>
+     <title>
+       Using createElement to create new elements
+     </title>
+
+     <script language="JavaScript">
+       function create() 
+       {
+         var newDiv, newTextfield, newText;
+
+         newDiv = document.createElement("div");
+         newDiv.id = "NewDIV";
+
+         newTextfield = document.createElement("input");
+         newTextfield.type = "text";
+         newTextfield.value = "Hello!"
+
+         newText = document.createTextNode("Here is a new text field: ");
+
+         newDiv.insertBefore(newText, null);
+         newDiv.insertBefore(newTextfield, null);
+
+         document.body.insertBefore(newDiv, null);
+       }
+     </script>
+  </head>
+
+  <body>
+    <center>
+      <h1>
+        Using createElement to create new elements
+      </h1>
+    </center>
+
+    <div id="InitialDIV">
+      <input type="button" value="Click me" onclick="create()">
+    </div>
+
+  </body>
+</html>

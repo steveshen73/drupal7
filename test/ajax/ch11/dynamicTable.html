@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>
+            Updating dynamic tables
+        </title>
+
+        <script language="javascript">
+            function addRow()
+            {
+                var table1 = document.getElementById("table1");
+                var newRow = table1.insertRow(3);
+                var newCell = newRow.insertCell(0);
+                newCell.innerHTML = "data";
+                newCell = newRow.insertCell(1);
+                newCell.innerHTML = "data";
+                newCell = newRow.insertCell(2);
+                newCell.innerHTML = "data";
+            }
+        </script>
+    </head>
+
+    <body>
+        <center>
+            <h1>
+                Updating dynamic tables
+            </h1> 
+
+              <table id="table1" border="2">
+                  <tr>
+                      <td>data</td>
+                      <td>data</td>
+                      <td>data</td>
+                  </tr>
+                  <tr>
+                      <td>data</td>
+                      <td>data</td>
+                      <td>data</td>
+                  </tr>
+                  <tr>
+                      <td>data</td>
+                      <td>data</td>
+                      <td>data</td>
+                  </tr>
+            </table>
+
+            <br>
+
+            <input type="button" value="Add a new row" onclick="addRow()">
+
+        </center>
+    </body>
+</html>

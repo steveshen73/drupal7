@@ -1,0 +1,37 @@
+<html> 
+  <head> 
+    <title>Getting text with the Ajax Utility Library</title> 
+
+    <script type = "text/javascript" src = "ajaxutility.js"></script>
+
+    <script language = "javascript">
+      function callbackMessage1(text)
+      {
+        document.getElementById("targetDiv").innerHTML = text;
+      }
+
+      function callbackMessage2(text)
+      {
+        document.getElementById("targetDiv").innerHTML = text;
+      }
+    </script>
+
+  </head> 
+
+  <body>
+
+    <H1>Getting text with the Ajax Utility Library</H1>
+
+    <form>
+      <input type = "button" value = "Display text 1" 
+        onclick = "getText('data.txt', callbackMessage1)"> 
+      <input type = "button" value = "Display text 2" 
+        onclick = "getText('data2.txt', callbackMessage2)"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

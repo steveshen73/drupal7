@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Using the if statement</title>
+
+    <script language="javascript">
+
+      function showMessage() 
+      {
+        var account = 2000;
+        if(account > 1000) {
+            document.getElementById('targetDiv').innerHTML = 
+                "Time for a party!";
+        }
+      }
+    </script>
+
+  </head> 
+
+  <body onload="showMessage()">
+
+    <h1>Using the if statement</h1>
+
+    <div id="targetDiv">
+    </div>
+
+    </body>
+</html>

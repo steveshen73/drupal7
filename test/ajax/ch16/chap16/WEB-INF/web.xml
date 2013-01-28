@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/j2ee/dtds/web-app_2_3.dtd">
+
+<web-app>
+
+  <filter>
+    <filter-name>Log Filter</filter-name>
+    <filter-class>LogFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Authentication</filter-name>
+    <filter-class>PasswordFilter</filter-class>
+  </filter>
+
+  <filter>
+    <filter-name>Time</filter-name>
+    <filter-class>TimeFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>Log Filter</filter-name>
+    <url-pattern>/log.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Authentication</filter-name>
+    <url-pattern>/password.jsp</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>Time</filter-name>
+    <url-pattern>/time.jsp</url-pattern>
+  </filter-mapping>
+
+  <servlet>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>Controller</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/Controller</url-pattern>
+  </servlet-mapping>
+
+</web-app>

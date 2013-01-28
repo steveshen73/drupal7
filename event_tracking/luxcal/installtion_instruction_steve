@@ -1,0 +1,24 @@
+Calendar Configuration and Installation
+
+
+Installation Successful
+
+    The database has been created successfully and the default calendar
+    settings have been saved in the table settings
+    The LuxCal version number and the (encrypted) database credentials have
+    been saved in the file lcaldbc.dat in the calendar root directory
+
+
+Please note that it is good practice to directly . . .
+
+- back up the database credentials file lcaldbc.dat in the root directory of the calendar
+
+- delete the installation file install.php from the root directory of the calendar
+
+Log in to the calendar, go to the administration menu (top right) and:
+
+- on the Settings page set the timeZone to your local time zone
+
+- on the Settings page choose your preferred settings
+
+- on the Categories page define a number of useful event categories

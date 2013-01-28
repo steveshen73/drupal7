@@ -1,0 +1,59 @@
+============================
+= LuxCal Development Notes =
+============================
+
+To do list for next versions:
+============================
+1. Add admin setting to enable/disable "authentication required" for posting via 
+   mini-calendar + make logging in / self-registering via mini-cal possible.
+2. Add possibility to the user's page to select cats which the user may see.
+3. Add drag and drop functionality (if feasible in HTML5)
+
+
+Change log - version 2.7.1:
+==========================
+01. header1.php, headera.php, {most pages}.php: The Print button has moved to the 
+    Navigation bar and can now be used to print any calendar page. When printing 
+    a page, the page background color is set to white and undesired items, like 
+    the navigation bar, buttons, scroll bars, notification messages, the 
+    calendar footer, etc. are removed.
+02. index.php, installation_guide.html: Ready for single sign-on (SSO). When the 
+    calendar is embedded, users logged in on the parent website can be logged in 
+    to the calendar automatically in a secure and easy way, using PHP sessions.
+03. settings.php, ai-{lang}.php, retrieve.php, toolbox.php, notify.php, 
+    event.php: A new admin setting has been added, to set the sender of reminder 
+    emails to either the calendar mail address or to the mail address of the 
+    user who created the event.
+04. settings.php, lcmini.php, year.php, month.php, dw_functions.php: Two new 
+    admin settings have been added to enable / disable the popping up of the 
+    hover box with event details. One for Year, Month, Week and Day view in the 
+    full size calendar and another for the mini calendar. Both are independent. 
+    If the hover box is disabled, event details can still be viewed by clicking 
+    the event title in the full size calendar or the event square in the mini 
+    calendar.
+05. lctheme.php, css.php: More user interface style definitions have been added 
+    to the themes file giving the admin more possibilities to tailor the user 
+    interface (e.g. today and selected date day cell, hover box for normal, 
+    private and repeating events).
+06. css.php, css_mini.php, lctheme_mini.php: The mini calendar now has its own 
+    styles sheet and theme definition file. Consequently the mini calendar can 
+    now be styled independently of the normal calendar.
+07. general.js: The position of the log-in pop up window has moved from the 
+    screen center to the more logical calendar window center.
+08. retrieve.php: When event data was retrieved via a cron job and PHP sessions 
+    were not active, a PHP warning message was produced. Solved.
+09. dw_functions.php: In Week and Day view multiple events on the same day 
+    showed only one of the events. This was a bug introduced in V2.7.0b.
+10. notify.php, retrieve.php: Retrieving event data via a cron job, while PHP 
+    sessions were not active, caused a PHP warning message (undefined variable: 
+    _SESSION).
+11. notify.php: Bug in passing of email list to sendMail function.
+12. categories.php, users.php: PHP warning undefined variable $msg resolved.
+13. css.php, header1.php: The height of all navigation bar items made identical.
+14. general.php: In Chrome and Safari the hover box with event details only 
+    showed the word "details". This was caused by the name "details" given to 
+    the hover box and the meaning of <details>-tags introduced in HTML5.
+15. login.php, ai{lang}.php: When the calendar has not been reloaded during the 
+    lifetime of the PHP session and the user selects Log In, the Log In pop up 
+    window remained empty. This has been fixed; now a message is displayed 
+    asking to reload the calendar.

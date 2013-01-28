@@ -1,0 +1,63 @@
+<html> 
+  <head> 
+    <title>Reading JavaScript with Ajax</title> 
+
+    <script language = "javascript">
+      var XMLHttpRequestObject = false; 
+
+      if (window.XMLHttpRequest) {
+        XMLHttpRequestObject = new XMLHttpRequest();
+      } else if (window.ActiveXObject) {
+        XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      function getData(dataSource) 
+      { 
+        if(XMLHttpRequestObject) {
+
+          XMLHttpRequestObject.open("GET", dataSource); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                
+                //eval() javascript function will convert the javascript function display() that passed into the getData() function in text form
+                eval(XMLHttpRequestObject.responseText); 
+                
+                //XMLHttpRequestObject.responseText;
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function display() 
+      {
+        var targetDiv = document.getElementById("targetDiv");
+
+        targetDiv.innerHTML = "It worked!";
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Reading JavaScript with Ajax</H1>
+
+    <form>
+      <!--
+      <input type = "button" value = "Get the JavaScript" 
+        onclick = "getData('javascript.php?r=6')"> 
+      -->
+      <input type = "button" value = "Get the JavaScript" 
+        onclick = "getData('javascript.txt')"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Using buttons</title>
+
+        <script language="javascript">
+            function showMessage()
+            {
+              document.getElementById('targetDiv').innerHTML = 
+             "You clicked the button.";
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <h1>Using buttons</h1>
+        <form>
+            <input type="button" onclick="showMessage()" value="Click Here">
+        </form>
+
+       <div id="targetDiv">
+       </div>
+    </body>
+</html>

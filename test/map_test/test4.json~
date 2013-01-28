@@ -1,0 +1,14 @@
+{
+	  "response_status" : 0,
+	  "response_message" : "Success",
+	  "response_data" : {
+	    "total" : 15,
+	    "directories" : 
+            [
+		      {"name":"San Jose, CA", "lat" : 37.3393857,  "lng" : -121.8949555, "id" : 1},
+		      {"name" : "Los Angeles, CA", "lat" : 34.0522342, "lng" : -118.2436849, "id" : 2}
+		      
+          
+	     ]
+  }
+}

@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Using the while loop</title>
+
+    <script language="javascript">
+
+      function showMessage() 
+      {
+        var loopIndex = 0, customers = new Array(6);
+
+        customers[0] = "Anne";
+        customers[1] = "Tom";
+        customers[2] = "Frank";
+        customers[3] = "Sam";
+        customers[4] = "Elizabeth";
+        customers[5] = "Nancy";
+        customers[6] = "Ralph";
+        customers[7] = "Zack";
+
+        while(customers[loopIndex] != "Nancy" && loopIndex < customers.length - 1){
+          loopIndex++;
+        }
+
+        if(loopIndex < customers.length - 1){
+          document.getElementById('targetDiv').innerHTML = 
+          "I found Nancy at customer index " + loopIndex;
+        }
+        else {
+          document.getElementById('targetDiv').innerHTML = 
+          "I did not find Nancy.";
+        }
+      }
+    </script>
+
+  </head> 
+
+  <body onload="showMessage()">
+
+    <h1>Using the while loop</h1>
+
+    <div id="targetDiv">
+    </div>
+
+    </body>
+</html>

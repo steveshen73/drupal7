@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>
+            Getting browser information
+        </title>
+        <script language="javascript">
+            function showMessage()
+            {
+              var text = "Your browser is " + navigator.appName; 
+              text += "<br><br>";
+              text += "Your browser's verison is  " +     
+                navigator.appVersion; 
+              text += "<br><br>";
+              text += "Here is the full information: " + 
+              navigator.userAgent;
+              document.getElementById("targetDiv").innerHTML = text;
+            }
+         </script>
+    </head>
+
+    <body onload="showMessage()">
+
+        <h1>Getting browser information</h1>
+
+        <div id="targetDiv">
+        </div>
+    </body>
+</html>

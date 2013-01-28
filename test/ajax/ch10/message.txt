@@ -1,0 +1,2 @@
+This text will be red for half a second, then change to black. 
+

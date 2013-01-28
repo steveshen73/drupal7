@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE events [                            
+<!ELEMENT events (event*)>                     
+<!ELEMENT event (event_title, event_number, subject, date, people*)>                 
+<!ELEMENT event_title (#PCDATA)>                     
+<!ELEMENT event_number (#PCDATA)>                     
+<!ELEMENT subject (#PCDATA)>                     
+<!ELEMENT date (#PCDATA)>                     
+<!ELEMENT first_name (#PCDATA)>                     
+<!ELEMENT last_name (#PCDATA)>                     
+<!ELEMENT people (person*)>                      
+<!ELEMENT person (first_name,last_name)>                      
+<!ATTLIST event
+    type CDATA #IMPLIED>
+<!ATTLIST person
+    attendance CDATA #IMPLIED>
+]>                                              
+<events>
+    <event type="informal">
+       <event_title>National Awards</event_title>
+       <event_number>3</event_number>
+       <subject>Pet Awards</subject>
+       <date>5/5/2007</date>
+       <peoples>
+           <person attendance="present">
+               <first_name>June</first_name>
+               <last_name>Allyson</last_name>
+           </person>
+           <person attendance="absent">
+               <first_name>Virgina</first_name>
+               <last_name>Mayo</last_name>
+           </person>
+           <person attendance="present">
+               <first_name>Jimmy</first_name>
+               <last_name>Stewart</last_name>
+           </person>
+       </peoples>
+   </event>
+</events>

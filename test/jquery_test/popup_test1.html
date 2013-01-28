@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <script src="http://code.jquery.com/jquery-latest.js"></script>
+ <script src='jquery.jmpopups-0.5.1.js' type='text/javascript'></script>
+<script type="text/javascript">
+$.setupJMPopups({
+ screenLockerBackground: "#000000",
+ screenLockerOpacity: "0.5"
+
+});
+
+function ajaxPopup(){
+   $.openPopupLayer({
+        name: "signupForm",
+        width: 782,
+        url: "http://cashflow.bill.com/devsignup.html"
+       
+});
+}
+</script>
+</head>
+<body>
+<a href="javascript:;" onclick="ajaxPopup()">join the Bill.com Developer Program</a>
+</body>
+</html>

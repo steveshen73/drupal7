@@ -1,0 +1,45 @@
+<html> 
+  <head> 
+    <title>Testing the Sarissa framework</title> 
+
+    <script src = "sarissa.js"></script>
+    <script src = "sarissa_ieemu_xpath.js">
+
+    </script>
+
+    <script language = "javascript">
+
+      function useSarissa() 
+      { 
+        var domDocument = Sarissa.getDomDocument();
+        domDocument.async = true; 
+
+        domDocument.onreadystatechange = function () 
+        {
+          if (domDocument.readyState == 4) { 
+            var element = domDocument.selectSingleNode("//data");
+            document.getElementById("targetDiv").innerHTML =
+              Sarissa.serialize(element);
+          }
+        }
+
+        domDocument.load("sarissa.xml");
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Testing the Sarissa framework</H1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useSarissa()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

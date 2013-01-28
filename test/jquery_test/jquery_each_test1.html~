@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript">     
+      jQuery_1_7_1(document).ready(function(){
+          var numArray = [1,2,3,4];
+          jQuery_1_7_1.each(numArray, function(index, value){
+              value = value * 2;
+              console.log("index is:"+index+" new value is:"+value);
+          });          
+      });
+    </script>
+  </head>
+  <body>  
+  </body>
+</html>

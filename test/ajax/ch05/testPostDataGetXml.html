@@ -1,0 +1,61 @@
+<html>
+  <head>
+
+    <title>Posting data and getting XML with the Ajax Utility Library</title>
+
+    <script type = "text/javascript" src = "ajaxutility.js"></script>
+
+    <script language = "javascript">
+
+      var menu;
+
+      function getmenu(xmlDocument)
+      {
+         menu = xmlDocument.getElementsByTagName("menuitem");
+         listmenu();
+      }
+
+      function listmenu ()
+      {
+        var loopIndex;
+        var selectControl = document.getElementById('menuList');
+
+        for (loopIndex = 0; loopIndex < menu.length; loopIndex++ )
+        {
+            selectControl.options[loopIndex] = new 
+               Option(menu[loopIndex].firstChild.data);
+        }
+    }
+    
+    function setmenu()
+    {
+      document.getElementById('targetDiv').innerHTML = 
+        "You selected " + menu[document.getElementById           
+          ('menuList').selectedIndex].firstChild.data;
+    }
+
+    </script>
+  </head>
+
+  <body>
+
+    <h1>Posting data and getting XML with the Ajax Utility Library</h1>
+
+    <form>
+      <select size="1" id="menuList" 
+        onchange="setmenu()">
+        <option>Select a menu item</option>
+      </select>
+      <br>
+      <br>
+      <input type = "button" value = "Select menu 1" 
+        onclick = "postDataGetXml('menus.php', 'menu=1', getmenu)"> 
+      <input type = "button" value = "Select menu 2" 
+        onclick = "postDataGetXml('menus.php', 'menu=2', getmenu)"> 
+    </form>
+
+    <div id="targetDiv" width =100 height=100>Your lunch selection will appear here.</div>
+
+  </body>
+
+</html>

@@ -1,0 +1,10 @@
+RSS with jQuery project Readme
+------------------------------
+Author: Honglin (Steve) Shen
+
+required files:
+
+proxy.php -- this is a proxy file to read xml data from cross domain
+my_rss.js (scripts/my_rss.js) -- this is the jquery javascript file that using proxy.php to calling data from cross domain
+index.html ---this is the file that showing the rss news blog from the cross domain
+jquery-1.6.2.min.js --- this is the jquery file included in index.html header section.

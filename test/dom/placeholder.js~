@@ -1,0 +1,59 @@
+window.onload = function(){
+
+    var placeholder = document.createElement("hr");
+    placeholder.setAttribute("id", "placeholder");
+    placeholder.setAttribute("align", "left");
+    placeholder.setAttribute("width", "622px");
+    placeholder.setAttribute("height", "50%");
+  
+   
+   
+    //var block = document.createElement('br');
+    //var block1 = document.createElement('br')
+   
+
+    
+ 
+    //var parent = document.getElementById('mainLeftBottom');
+    //var parents = parent.getElementsByClassName('views-field views-field-easy-social');
+
+    //var social = document.getElementsByClassName('views-field views-field-easy-social'); //views-field.views-field-title
+    var socials = new Array();
+    socials = document.getElementsByTagName('div');
+      
+    socials[0].appendChild(placeholder);
+    socials[1].appendChild(placeholder);
+    socials[2].appendChild(placeholder);
+    socials[3].appendChild(placeholder);
+    
+    //parent.appendChild(placeholder);
+    
+/*--
+    for( var i=0; i<socials.length; i++){
+
+    socials[0](placeholder);
+    
+   }
+ --*/
+
+   //parent.insertBefore(placeholder, social2);
+   //parent.insertBefore(block, placeholder);
+   //parent.insertBefore(block1, social2); 
+  
+   //document.body.insertBefore(block, social);
+}
+
+/*--
+function insertAfter(newElement, targetElement){
+   var parent = document.body;
+   if(parent.lastChild == targetElement)
+   {
+      parent.appendChild(newElement);
+   }else{
+       parent.insertBefore(newElement, targetElement.nextSibling);
+        }
+
+}
+--*/
+
+

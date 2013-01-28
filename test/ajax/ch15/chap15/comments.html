@@ -1,0 +1,53 @@
+<html> 
+  <head> 
+    <title>Display your comments</title> 
+
+    <script language = "javascript">
+      var XMLHttpRequestObject = false; 
+
+      if (window.XMLHttpRequest) {
+        XMLHttpRequestObject = new XMLHttpRequest();
+      } else if (window.ActiveXObject) {
+        XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      function getData(dataSource, divID) 
+      { 
+        if(XMLHttpRequestObject) {
+          var obj = document.getElementById(divID); 
+          XMLHttpRequestObject.open("GET", dataSource + "?text=" + 
+            escape(document.getElementById("text").value)); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                obj.innerHTML = XMLHttpRequestObject.responseText; 
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Display your comments</H1>
+
+    <form>
+      Enter your comments:
+      <input type = "text" name="text"> 
+      <br>
+      <br>
+      <input type = "button" value = "Display your comments" 
+        onclick = "getData('comments.jsp', 'targetDiv')"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

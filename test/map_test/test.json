@@ -1,0 +1,31 @@
+{
+	  "response_status" : 0,
+	  "response_message" : "Success",
+	  "response_data" : {
+	    "total" : 15,
+	    "directories" : 
+            [ 
+              { "address" : "Lake Wylie, SC", "lat" : "35.068849","Lng" : "-81.0616662", "id" : 1},
+	      { "address" : "Los Angeles, CA", "lat" : "34.0522342","lng" : "-118.2436849", "id" : 5},
+	      { "address" : "new york, NY", "lat" : "40.7143528","lng" : "-74.0059731", "id" : 3},
+	      { "address" : "Scotia, NY" , "lat" : "42.8264652","lng" : "-73.9642915", "id" : 2},
+	      { "address" : "Evanston,IL", "lat" : "42.0411414","lng" : "-87.6900587", "id" : 4},
+	      { "address" : "Williston, FL", "lat" : "29.38747", "lng" : "-82.4467705", "id" : 6}, 
+	      { "address" : "Perkasie, PA", "lat" : "40.372048", "lng" : "-75.292676", "id" : 7},
+	      { "address" : "Yorba Linda,CA", "lat" : "33.8886259", "lng" : "-117.8131125", "id" : 8},
+	      { "address" : "Richmond,IN", "lat" : "39.8289369","lng" : "-84.8902382", "id" : 9},
+	      { "address" : "McLean,VA", "lat" : "38.9338676","lng" : "-77.1772604", "id" : 10},
+	      { "address" : "Telluride,CO", "lat" : "37.9374939","lng" : "-107.8122852", "id" : 11},
+	      { "address" : "Calabasas,CA", "lat" : "34.1383333","lng" : "-118.6608333", "id" : 12},
+	      { "address" : "Huntsville,AL", "lat" : "34.7303688","lng" : "-86.5861037", "id" : 13},
+	      { "address" : "CLAYTON,NC", "lat" : "35.650711","lng" : "-78.4563914", "id" : 14},
+              { "address" : "Willoughby Hills,OH", "lat" : "41.5983823","lng" : "-81.4184471", "id" : 15},
+              { "address" : "Raleigh, NC", "lat" : "35.772096","Lng" : "-78.6386145", "id" : 16},
+              { "address" : "Glen Ellyn, IL", "lat" : "41.8775293","Lng" : "-88.0670118", "id" : 17},
+              { "address" : "Bridgewater, NJ", "lat" : "40.6233333","Lng" : "-74.6011111", "id" : 18},
+              { "address" : "1141 Ringwood court, San Jose, CA", "lat" : "37.392809","Lng" : "-121.89418", "id" : 19}
+              
+             
+	 ]
+  }
+}

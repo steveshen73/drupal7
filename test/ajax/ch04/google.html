@@ -1,0 +1,90 @@
+<html> 
+  <head> 
+
+    <title>Connecting to Google Suggest</title> 
+
+    <style>
+    #targetDiv {
+      background-color: #FFAAAA;
+      width: 40%;
+    }
+    </style>
+
+    <script language = "javascript">
+      function getData(dataSource) 
+      { 
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+          XMLHttpRequestObject.open("GET", dataSource); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                eval(XMLHttpRequestObject.responseText);
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function connectGoogleSuggest(keyEvent) 
+      {
+        var input = document.getElementById("textField");
+
+        if (input.value) {
+          getData("google.php?qu=" + input.value);
+        } 
+        else {
+          var targetDiv = document.getElementById("targetDiv");
+
+          targetDiv.innerHTML = "<div></div>";
+        }
+      }
+
+      function sendRPCDone(unusedVariable, searchTerm, arrayTerm, 
+        arrayResults, unusedArray) 
+      {
+        var data = "<table>";
+        var loopIndex;
+
+        if (arrayResults.length != 0) {
+          for (var loopIndex = 0; loopIndex < arrayResults.length; 
+            loopIndex++) {
+            data += "<tr><td>" +
+            "<a href='http://www.google.com/search?q=" + 
+            arrayTerm[loopIndex] + "'>" + arrayTerm[loopIndex] + 
+            '</a></td><td>' + arrayResults[loopIndex] + "</td></tr>";
+          }
+        }
+
+        data += "</table>";
+
+        var targetDiv = document.getElementById("targetDiv");
+
+        targetDiv.innerHTML = data;
+      }
+    </script>
+
+  </head> 
+
+  <body>
+
+    <H1>Connecting to Google Suggest</H1>
+
+    Search for <input id = "textField" type = "text" 
+      name = "textField" onkeyup = "connectGoogleSuggest(event)">
+
+      <div id = "targetDiv"><div></div></div>
+
+  </body> 
+
+</html>

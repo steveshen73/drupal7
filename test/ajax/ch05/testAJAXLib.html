@@ -1,0 +1,35 @@
+<html> 
+  <head> 
+    <title>Using the AJAXLib Ajax framework</title> 
+
+    <script src = "ajaxlib.js"></script>
+
+    <script language = "javascript">
+
+      function callback() 
+      { 
+        var xmlData = resultXML.getElementsByTagName("text");
+
+        var div = document.getElementById('targetDiv');
+
+        div.innerHTML = xmlData[0].firstChild.data;
+
+      }
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Using the AJAXLib Ajax framework</H1>
+
+    <form>
+      <input type = "button" value = "Get the message" 
+        onclick = "loadXMLDoc('message2.xml', callback, false)"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body> 
+</html>

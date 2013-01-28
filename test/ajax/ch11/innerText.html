@@ -1,0 +1,31 @@
+<html>
+
+    <head>
+        <title>
+            Changing text on the fly
+        </title>
+
+        <script language = "JavaScript">
+         function changeHeader()
+         {
+           var header = document.getElementById("header");
+           header.innerText = "Here is the new text";
+         }
+        </script>
+
+    </head>
+
+    <body>
+
+        <center>
+            <h1 id = header 
+              onclick = "changeHeader()">
+              Changing text on the fly
+            </h1>
+
+            Click the above header to make it change.
+        </center>
+
+    </body>
+
+</html>

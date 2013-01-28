@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>
+          Setting style sheets dynamically
+        </title>
+        <style id=dramatic>
+           body {font-family: 
+             verdana; color: white; background-color: black}
+        </style>
+
+        <style id=normal disabled=true>
+            body {font-family: 'times new roman'; color: black; 
+                background-color: white}
+        </style>
+
+        <script language="javascript">
+            function setStyle(styleName) 
+            {
+                var sheet
+                for (var loopIndex = 0; loopIndex < 
+                    document.styleSheets.length; loopIndex++) {
+                    sheet = document.styleSheets[loopIndex]
+                    sheet.disabled = true
+                    if (sheet.id == styleName) {
+                        sheet.disabled = false
+                    }
+                }
+            }
+        </script>
+
+    </head>
+
+    <body>
+        <h1>
+            Setting style sheets dynamically
+        </h1>
+
+        <center>
+            <input type=button value="Normal Style" 
+                onclick="setStyle('normal')">
+            <input type=button value="Dramatic Style" 
+                onclick="setStyle('dramatic')">
+        </center>
+
+        <p>     
+            Set the style sheet for this page by clicking a button.
+        </p>
+    </body>
+
+</html>

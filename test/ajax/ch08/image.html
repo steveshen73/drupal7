@@ -1,0 +1,62 @@
+<html> 
+  <head> 
+    <title>Downloading images using Ajax</title> 
+
+    <script language = "javascript">
+
+      function getData(dataSource, callback)
+      { 
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new 
+            ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+          XMLHttpRequestObject.open("GET", dataSource); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                callback(XMLHttpRequestObject.responseText); 
+                delete XMLHttpRequestObject;
+                XMLHttpRequestObject = null;
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function callback(text)
+      {
+        document.getElementById("targetDiv").innerHTML = 
+          "<img src= " + text + ">";
+      }
+
+    </script>
+  </head> 
+
+  <body>
+
+    <H1>Downloading images using Ajax</H1>
+
+    <form>
+      <input type = "button" value = "Show image 1" 
+        onclick = 
+          "getData('imageName1.txt', callback)"> 
+      <input type = "button" value = "Show image 2" 
+        onclick = 
+          "getData('imageName2.txt', callback)"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched image will appear here.</p> 
+    </div> 
+
+  </body> 
+</html>

@@ -1,0 +1,67 @@
+<html>
+  <head>
+
+    <title>Accessing an XML element directly</title>
+
+    <script language = "javascript">
+
+      function getData()
+      {
+        var XMLHttpRequestObject = false; 
+
+        if (window.XMLHttpRequest) {
+          XMLHttpRequestObject = new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          XMLHttpRequestObject = new 
+            ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        if(XMLHttpRequestObject) {
+          XMLHttpRequestObject.open("GET", "event.xml", true); 
+
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+            var xmlDocument = XMLHttpRequestObject.responseXML;
+            displayThirdGuest(xmlDocument);
+            } 
+          } 
+
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+
+      function displayThirdGuest (xmldoc)
+      {
+        firstnamenodes = xmldoc.getElementsByTagName("first_name");
+        lastnamenodes = xmldoc.getElementsByTagName("last_name");
+                  
+        var displayText = "The third guest was: " + 
+          firstnamenodes[2].firstChild.nodeValue + ' ' 
+          + lastnamenodes[2].firstChild.nodeValue;
+
+        var target = document.getElementById("targetDiv");
+        target.innerHTML=displayText;
+      }
+
+    </script>
+
+  </head>
+
+  <body>
+
+    <h1>Accessing an XML element directly</h1>
+
+    <form>
+      <input type = "button" value = "Get the third guest" 
+        onclick = "getData()"> 
+    </form>
+
+    <div id="targetDiv" width =100 height=100>
+      Who was the third guest?
+    </div>
+
+  </body>
+
+</html>

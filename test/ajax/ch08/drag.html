@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <title>A shopping cart example</title>
+
+    <style type="text/css">
+      #dvdplayer {
+        position:absolute;
+        z-index:200;
+        background: #eecc00;
+        color:#0000FF;
+      }
+    
+      #cart {
+        position:absolute;
+        background: #00ff00;
+        color:#000000;
+      }
+    </style>
+
+    <script type="text/javascript">
+
+      var offsetX, offsetY;
+  
+      function MouseEvent(e) 
+      {
+        if(e) {
+          this.e = e; 
+        } else {
+          this.e = window.event; 
+        }
+
+        if(e.pageX) {
+          this.x = e.pageX; 
+        } else {
+          this.x = e.clientX; 
+        }
+
+        if(e.pageY) {
+          this.y = e.pageY; 
+        } else {
+          this.y = e.clientY; 
+        }
+
+        if(e.target) {
+          this.target = e.target; 
+        } else {
+          this.target = e.srcElement;
+        }
+      }
+  
+      function addListener(type, callback) 
+      {
+        if (document.addEventListener) {
+          document.addEventListener(type, callback, false);
+        } else if (document.attachEvent) {
+          document.attachEvent("on" + type, callback, false);
+        }
+      }
+  
+      function removeListener (type, callback) 
+      {
+        if (document.removeEventListener) {
+          document.removeEventListener(type, callback, false);
+        } else if (document.detachEvent) {
+          document.detachEvent("on" + type, callback, false);
+        }
+      }
+  
+      function processMouseDown(e) 
+      {
+        var e = new MouseEvent(e);
+        addListener("mousemove", processMouseMove);
+        addListener("mouseup", processMouseUp);
+        offsetX = e.x - parseInt(e.target.style.left);
+        offsetY = e.y - parseInt(e.target.style.top);
+        document.getElementById("targetDiv").innerHTML = "";
+      }
+    
+      function processMouseMove(e) 
+      {
+        var e = new MouseEvent(e);
+        var x = e.x - offsetX;
+        e.target.style.left = x + "px";
+        var y = e.y - offsetY;
+        e.target.style.top = y + "px";
+      }
+    
+      function processMouseUp(e) 
+      {
+        var e = new MouseEvent(e);
+        removeListener("mousemove", processMouseMove);
+        removeListener("mouseup", processMouseUp);
+
+        var cart = document.getElementById("cart");
+        var x = parseInt(cart.style.left);
+        var y = parseInt(cart.style.top);
+        var width = parseInt(cart.style.width);
+        var height = parseInt(cart.style.height);
+
+        if(e.x > x && e.x < x + width &&
+          e.y > y && e.y < y + height){
+          var XMLHttpRequestObject = false; 
+
+          if (window.XMLHttpRequest) {
+            XMLHttpRequestObject = new XMLHttpRequest();
+          } else if (window.ActiveXObject) {
+            XMLHttpRequestObject = new 
+            ActiveXObject("Microsoft.XMLHTTP");
+          }
+
+          if(XMLHttpRequestObject) {
+            XMLHttpRequestObject.open("GET", "buy.txt"); 
+
+            XMLHttpRequestObject.onreadystatechange = function() 
+            { 
+              if (XMLHttpRequestObject.readyState == 4 && 
+                XMLHttpRequestObject.status == 200) { 
+                  document.getElementById("targetDiv").innerHTML =
+                    XMLHttpRequestObject.responseText;
+                  delete XMLHttpRequestObject;
+                  XMLHttpRequestObject = null;
+              } 
+            } 
+
+            XMLHttpRequestObject.send(null); 
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <h1>Buy a DVD player--drag it to the shopping cart</h1>
+      <div id="targetDiv"></div>
+
+      <div id="dvdplayer" 
+        style="left:180px; top:150px; width:80px; height:60px;"
+        onmousedown="processMouseDown(event);">DVD Player</div>
+   
+      <div id="cart" 
+        style="left:350px; top:250px; width:200px; height:100px;">
+        Shopping Cart</div>
+
+  </body>
+</html>
+

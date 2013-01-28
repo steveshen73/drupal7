@@ -1,0 +1,39 @@
+<html>
+  <head>
+
+    <title>Testing the Http Ajax framework</title>
+
+    <script language="JavaScript" src="request.js"></script> 
+
+    <script language = "javascript">
+
+      function useRequest()
+      {
+          Http.get({'url':'request.txt', 
+          'cache':Http.Cache.GetNoCache, 
+          'callback':callback});
+      }
+
+      function callback(XMLHttpRquestObject) 
+      {
+        document.getElementById("targetDiv").innerHTML 
+          = XMLHttpRquestObject.responseText; 
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing the Http Ajax framework</h1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useRequest()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body>
+</html>

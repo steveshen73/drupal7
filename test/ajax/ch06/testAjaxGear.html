@@ -1,0 +1,43 @@
+<html>
+  <head>
+
+    <title>Testing the AjaxGear framework</title>
+
+    <script language="JavaScript" src="AjaxGear.Core.js"></script> 
+
+    <script language = "javascript">
+
+      var ajax;
+
+      function useAjaxGear()
+      {
+        ajax = new AjaxGear.Ajax();
+        ajax.setMethod("GET");
+        ajax.setPagePath("ajaxGear.txt");
+        ajax.onRequestComplete = callback;
+        ajax.startRequest();
+      }
+
+      function callback() 
+      {
+        document.getElementById("targetDiv").innerHTML 
+          = ajax.getResponseText(); 
+      }
+
+    </script>
+  </head>
+
+  <body>
+    <h1>Testing the AjaxGear framework</h1>
+
+    <form>
+      <input type = "button" value = "Display the text" 
+        onclick = "useAjaxGear()"> 
+    </form>
+
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+
+  </body>
+</html>

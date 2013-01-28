@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Using a &lt;span&gt; to display text</title>
+
+    <script language="javascript">
+      function showMessage (message)
+      {
+        document.getElementById('targetSpan').innerHTML = message
+      }
+    </script>
+  </head>
+
+  <body onload="showMessage(
+    'You are seeing this thanks to JavaScript')">
+    <h1>Using a &lt;span&gt; to display text</h1>
+
+    Here is the message: <span id="targetSpan">
+    </span>.
+
+  </body>
+</html>

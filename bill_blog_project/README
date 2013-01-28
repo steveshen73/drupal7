@@ -1,0 +1,34 @@
+Bill_blog from typepad to drupal 7 site (Not only for the specific project, good for any drupal 7 site with Panel and PE
+
+Author: Steve(Honglin) Shen
+Date: 01/28/2013
+
+Site: dev.bdc-edit.com
+-------------------------------------------------------------------------------------------------------------------------
+1)Download wordpress migration, migrate modules using drush
+2)set up a wordpress blog account
+3)Login Typepad account -> settings ->export , save the txt file (database) or (might be xml file)
+4)Login wordpress and import the txt file from typepad
+5)Export the xml file from wordpress (or can import the blog database file from drupal 7 from wordpress url directly)
+
+6)If the data not completely imported to drupal 7, can go to "migrate" tab, then keep importing the data that not import first time.
+
+7)Set up blog layout by creating the layout 'clouds_column_two_blog' under sites/all/themes/clouds/plugins/layouts/clouds_column_two_blog
+folder (mkdir clouds_column_two_blog).
+Files under sites/all/themes/clouds/plugins/layouts/clouds_column_two_blog:
+    ---clouds_column_two_blog.css (can use empty file if using base.css which added onto the clouds.info, or using drupal_add_css)
+    ---clouds_column_two_blog.inc (adding the definition for Clouds two column blog layout)
+    ---clouds-column-two-blog.png (the icon to choose in the layout of the template)
+    ---clouds-column-two-blog.tpl.php (the template file for the layout)
+
+8)Build a /blog-post page to be the main page of the blog entry, choosing the clouds_column_two_blog layout, and adding the blocks or custom codes on the the content template of this page. (such as adding archive, blog categories views on the right side, blog content views for the main content..etc.)
+
+9)Override system node_view(node template--title) under admin/structure/pages using the clouds_column_two_blog layout template, adding the parts needed on the content template. (such as adding views, blocks, widget, custom codes..etc.)
+ Step 9 is to make all indiviual blog to show the right format on the panel (PE) accoring the the theme PE.
+
+10)Override system term_view (Taxonomy term template-- title) with categorized term and tagrized term. (criterial selection using categories term, and select all the ids under categories, and using Tags term and select all the ids under Tags, seperately for each taxonomy overriding panel)
+
+11) While formatting the views on the panels, go to the view configuration, "theme info" on the right side of the view configuration, check the appropriate view file, copy the code to change format to save as a more specific view file to override the original view format. save the file within the theme(here I use clouds) folder.
+
+Well, If you spend some time to study drupal 7, you will understand what I put here. Good luck.
+

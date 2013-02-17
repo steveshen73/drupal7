@@ -1,5 +1,6 @@
 <?php
 /**
+ * this .inc file not needed for writing my_fieldset module, just another reference for hook_form_alter
  * Implements hook_form_alter
  * 
  * @param type $form
